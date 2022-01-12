@@ -51,5 +51,6 @@ public class Variables
       System.out.println("*short number  = "+shortNumber+"\t\t*");
       System.out.println("*string text  = "+text+"\t\t   *");
       System.out.println("*char one Letter / Digit  = "+oneLetter+"\t\t     *");
-      System.out.println("*boolean isHuman  = "+isHuman+"\t\t    *");	}
+      System.out.println("*boolean isHuman  = "+isHuman+"\t\t    *");	
+      }
 }
