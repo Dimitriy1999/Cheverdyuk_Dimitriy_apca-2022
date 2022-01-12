@@ -13,30 +13,30 @@ public class Variables
      //define 1 variable of each of the
 		//following data types
 		//byte		
-    //short		
-    //int  		
-    //long
+    		//short		
+    		//int  		
+    		//long
 		//float		
-    //double
+    		//double
 		//char      
-    //boolean		
-    //String
+    		//boolean		
+    		//String
 
 		//integer variables
 		byte byteOne = 127;
-    int randomNumber = 100;
+    		int randomNumber = 100;
 
 		//decimal variables
-    float number = 19.5f;
-    double number2 = 15.42;
+    		float number = 19.5f;
+    		double number2 = 15.42;
 
 		//other integer types
-    long bigNumber = 1231231233;
-    short shortNumber = 32767;
+    		long bigNumber = 1231231233;
+    		short shortNumber = 32767;
 		//other types
-    String text = "random Text";
-    char oneLetter = 't';
-    boolean isHuman = true;
+    		String text = "random Text";
+   		 char oneLetter = 't';
+    		boolean isHuman = true;
 
 		//output your information here
 	System.out.println("/////////////////////////////////");
