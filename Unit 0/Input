@@ -44,7 +44,7 @@ public class Input
     shortOne = keyboard.nextShort();
 
    System.out.print("Enter a short value :: ");
-    shortTwo = keyboard.nextDouble();
+    shortTwo = keyboard.nextShort();
 
 		//add in input for all variables
 
