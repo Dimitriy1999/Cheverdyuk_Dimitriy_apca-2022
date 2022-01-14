@@ -25,7 +25,7 @@
           int randomNumber = 100;
 
           //decimal variables
-          float number = 19.5 f;
+          float number = 19.5f;
           double number2 = 15.42;
 
           //other integer types
@@ -41,11 +41,11 @@
           System.out.println("*                               *");
           System.out.println("*        integer types          *");
           System.out.println("*                               *");
-          System.out.println("*8 bit - byteOne = " + byteOne + "\t\t    *");
-          System.out.println("*int Number = " + randomNumber + "\t\t         *");
-          System.out.println("*float float number = " + number + "\t\t       *");
-          System.out.println("*double number  = " + number2 + "\t\t        *");
-          System.out.println("*long big Number  = " + bigNumber + "\t\t    *");
+          System.out.println("*8 bit - byteOne = " + byteOne + "\t\t*");
+          System.out.println("*int Number = " + randomNumber + "\t\t*");
+          System.out.println("*float float number = " + number + "\t\t*");
+          System.out.println("*double number  = " + number2 + "\t\t*");
+          System.out.println("*long big Number  = " + bigNumber + "\t\t*");
           System.out.println("*short number  = " + shortNumber + "\t\t*");
           System.out.println("*string text  = " + text + "\t\t   *");
           System.out.println("*char one Letter / Digit  = " + oneLetter + "\t\t     *");
