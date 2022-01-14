@@ -20,7 +20,11 @@ public class StarsAndStripes
   {
     for(int i = 0; i <= 20; i++)
     {
-      out.println("*");
+      out.print("*");
+      if(i == 20)
+      {
+    	 out.println("");  
+      }
     }
   }
  
@@ -28,7 +32,11 @@ public class StarsAndStripes
   {
    for(int i = 0; i <= 20; i++)
     {
-      out.println("-");
+      out.print("-");
+      if(i == 20)
+      {
+    	 out.println("");  
+      }
     } 
   }
  
