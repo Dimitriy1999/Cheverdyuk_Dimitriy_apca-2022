@@ -16,7 +16,7 @@ public class DiscountRunner {
         double amt = keyboard.nextDouble();
         Discount discount = new Discount();
         double value = discount.getDiscountedBill(amt);
-        out.print(value);
+        out.print("Final Bill amount is : " + value);
 
 
     }
