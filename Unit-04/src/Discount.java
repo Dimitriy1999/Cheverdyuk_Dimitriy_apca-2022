@@ -5,6 +5,7 @@ public class Discount {
         double finalValue = bill;
         double discountAmount = 15;
         if (bill > 2000) {
+        	//Simple percentage stuff
             discountAmount = discountAmount / 100;
             discountAmount = bill * discountAmount;
             finalValue = bill - discountAmount;

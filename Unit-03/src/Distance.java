@@ -23,6 +23,7 @@ public class Distance {
     }
 
     public void setCoordinates(int x1, int y1, int x2, int y2) {
+    	//setting the variables in the class to the parameters
         xOne = x1;
         xTwo = x2;
         yOne = y1;
@@ -30,6 +31,7 @@ public class Distance {
     }
 
     public void calcDistance() {
+    	//Distance formula 
         distance = Math.sqrt((Math.pow(xTwo - xOne, 2)) + (Math.pow(yTwo - yOne, 2)));
     }
 
