@@ -15,7 +15,8 @@ public class Distance {
     private double distance;
 
     public Distance() {
-        //Don't think i need anything in here?
+        setCoordinates(0,0,0,0);
+        xOne = yOne = xTwo = yTwo = 0;
     }
 
     public Distance(int x1, int y1, int x2, int y2) {

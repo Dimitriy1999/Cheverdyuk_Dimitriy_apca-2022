@@ -10,10 +10,18 @@ public class AsciiBox
 {
 	public static void main(String[] args)
 	{
-		//I am not sure what to really do for this task not really clarified so i hope this is correct
-		System.out.println("+++++++++++++++++++++++++ \n");
-    		System.out.println("+Dimitriy \t  1/12/2022 +\n\n" );
-		System.out.println("+++++++++++++++++++++++++ ");
+		System.out.println("Dimitriy \t  1/12/2022 +\n\n" );
+		for(int i = 0; i < 16; i++)
+		{
+			if(i % 4 == 1)
+			{
+				System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			}
+			else
+			{
+				System.out.println("-----------------------------------");
+			}
+		}
 
 	}
 }
