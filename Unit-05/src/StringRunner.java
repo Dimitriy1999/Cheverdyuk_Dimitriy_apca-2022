@@ -18,7 +18,23 @@ public class StringRunner
 		
 		System.out.print("Enter an word :: ");
         String word = keyboard.next();
-
+        test.setString(word);
+        System.out.println(test.toString());
         
+        System.out.print("Enter an word :: ");
+        word = keyboard.next();
+        test.setString(word);
+        System.out.println(test.toString());
+
+        System.out.print("Enter an word :: ");
+        word = keyboard.next();
+        test.setString(word);
+        System.out.println(test.toString());
+
+        System.out.print("Enter an word :: ");
+        word = keyboard.next();
+        test.setString(word);
+        System.out.println(test.toString());
+
 	}
 }
