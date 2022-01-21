@@ -20,6 +20,8 @@ public class Celebrity
 	 */
 	public Celebrity(String answer, String clue)
 	{
+		setClue(clue);
+		setAnswer(answer);
 	}
 
 	/**
