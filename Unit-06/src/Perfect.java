@@ -26,10 +26,9 @@ public class Perfect
 		int i = 1;
 		while(i < number)
 		{
-			checkNumber = checkNumber + i;
-			if(number % checkNumber == 0)
+			if(number % i == 0)
 			{
-				out.println(checkNumber);
+				checkNumber = checkNumber + i;
 				if(checkNumber == number)
 				{
 					return true;

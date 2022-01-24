@@ -13,6 +13,7 @@ public class LetterRemover
 	{
 		setRemover(sentence, lookFor);
 	}
+	
 	//add in second constructor
 	
 	

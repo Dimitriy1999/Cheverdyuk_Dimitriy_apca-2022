@@ -13,7 +13,7 @@ public class PerfectRunner
 		test.setNumber(6);
 		test.isPerfect();
 		out.println(test.toString());
-/*
+
 		test.setNumber(496);
 		test.isPerfect();
 		out.println(test.toString());
@@ -41,6 +41,5 @@ public class PerfectRunner
 		test.setNumber(33550336);
 		test.isPerfect();
 		out.println(test.toString());
-	*/
 	}
 }
