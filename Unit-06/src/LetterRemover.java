@@ -13,7 +13,10 @@ public class LetterRemover
 	{
 		setRemover(sentence, lookFor);
 	}
-	
+	public LetterRemover(String s, char rem)
+	{
+		setRemover(s, rem);
+	}
 	//add in second constructor
 	
 	
