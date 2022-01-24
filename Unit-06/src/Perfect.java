@@ -12,7 +12,10 @@ public class Perfect
    	{
    		setNumber(number);
    	}
-
+   	public Perfect(int num)
+   	{
+   		setNumber(0);
+   	}
 	//add a set method
    	public void setNumber(int num) 
    	{
