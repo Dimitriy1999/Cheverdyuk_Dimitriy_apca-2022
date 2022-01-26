@@ -12,8 +12,8 @@ public class RockPaperScissors
 
 	public RockPaperScissors() 
 	{
-		playChoice = "R";
-		compChoice = "S";
+		playChoice = "";
+		compChoice = "";
 	}
 
 	public RockPaperScissors(String player) 
