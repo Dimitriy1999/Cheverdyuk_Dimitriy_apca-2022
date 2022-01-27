@@ -9,13 +9,29 @@ public class RayOddToEven
 	public static int go(int[] ray)
 	{
 		int originalValue = 0;
-		for(int i = 0; i < ray.length; i++)
+		int count = 0;
+		for(int i = 0; i < ray.length - 1; i++)
 		{
+			if((ray[originalValue] % 2 == 0 && ray[originalValue + 1] % 2 == 1) 
+			|| (ray[originalValue] % 2 == 1 && ray[originalValue + 1] % 2 == 0))
+			{
+				return -1;
+			}
 			if(ray[originalValue] % 2 == 0)
 			{
-				if(ray[i] % 2 == 1)
+				if(ray[i + 1] % 2 == 1)
 				{
-					return i - originalValue;
+					count = i;
+					return count;
+				}
+			}
+			else if(ray[originalValue] % 2 == 1)
+				
+			{
+				if(ray[i + 1] % 2 == 0)
+				{
+					count = i;
+					return count + 1;
 				}
 			}
 		}

@@ -7,6 +7,19 @@ public class RaySumLast
 {
 	public static int go(int[] ray)
 	{
-		return 0;
+		int finalResult = 0;
+		int lastArrValue = ray[ray.length - 1];
+		for(int i = 0; i < ray.length - 1; i++)
+		{
+			if(ray[i] > lastArrValue)
+			{
+				finalResult += ray[i];
+			}
+		}
+		if(finalResult == 0)
+		{
+			return -1;
+		}
+		return finalResult;
 	}
 }
