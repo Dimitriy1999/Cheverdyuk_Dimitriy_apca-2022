@@ -39,7 +39,7 @@ public class BiggestDouble
       //We are basically checking to see if the first digit in the array is less than the one after it, if it is that means there is a bigger number else we it means the original number we have is the biggest in the array
 			if(arr[checkArr] < arr[i + 1])
 			{
-        checkArr = i + 1;
+				checkArr = i + 1;
 				temp = arr[i + 1];
 			}
 		}

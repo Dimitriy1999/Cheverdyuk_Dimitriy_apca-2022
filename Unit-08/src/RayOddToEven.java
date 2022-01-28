@@ -5,6 +5,16 @@
 
 public class RayOddToEven
 {
+	private int [] ray;
+	public RayOddToEven()
+	{
+		setRay(new int [] {0,0,0,0,0});
+	}
+	
+	public void setRay(int[] setValue)
+	{
+		ray = setValue;
+	}
 	//modified it to return int instead of bool as it does not make sense for it to be a bool
 	public static int go(int[] ray)
 	{
