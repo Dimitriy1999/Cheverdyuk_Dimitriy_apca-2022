@@ -25,7 +25,7 @@ public class RayOddToEven
 			if((ray[originalValue] % 2 == 0 && ray[originalValue + 1] % 2 == 1) 
 			|| (ray[originalValue] % 2 == 1 && ray[originalValue + 1] % 2 == 0))
 			{
-				return -1;
+				return 1;
 			}
 			if(ray[originalValue] % 2 == 0)
 			{
