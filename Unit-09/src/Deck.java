@@ -11,6 +11,7 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
+	//private List<Card> cards;
 	private Card[] cards;
 
 	/**
@@ -29,8 +30,21 @@ public class Deck {
 	 * @param suits is an array containing all of the card suits.
 	 * @param values is an array containing all of the card point values.
 	 */
-	public Deck(String[] ranks, String[] suits, int[] values) {
+	public Deck(String[] ranks, String[] suits, int[] values) 
+	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		cards = new Card[1];
+		for(int r = 0; r < ranks.length; r++)
+		{
+			for(int s = 0; s < suits.length; s++)
+			{
+				Card card = new Card(ranks[r], suits[s], values[r]);
+				//;
+			}
+		}
+		
+		size = cards.length;
+		shuffle();
 	}
 
 
@@ -40,6 +54,11 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(size() == 0)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -48,13 +67,15 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return size;
 	}
 
 	/**
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
 	 */
-	public void shuffle() {
+	public void shuffle() 
+	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
 	}
 
@@ -63,7 +84,16 @@ public class Deck {
 	 * @return the card just dealt, or null if all the cards have been
 	 *         previously dealt.
 	 */
-	public Card deal() {
+	public Card deal() 
+	{
+		if(isEmpty())
+		{
+			return null;
+		}
+		if(size > 0)
+		{
+			size--;
+		}
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 	}
 

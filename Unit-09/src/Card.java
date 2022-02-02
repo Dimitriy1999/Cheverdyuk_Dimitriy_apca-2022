@@ -74,10 +74,10 @@ public class Card {
 	 *              are equal to those of the argument;
 	 *         false otherwise.
 	 */
-	public boolean CardMatches(Card card)
+	public boolean Matches(Card otherCard)
 	{
 		//if the cards are matching with each other so basically if they are equal we return true else false
-		if(rank.equals(card.rank) && pointValue == card.pointValue && suit.equals(card.suit))
+		if(rank.equals(otherCard.rank) && pointValue == otherCard.pointValue && suit.equals(otherCard.suit))
 		{
 			return true;
 		}
@@ -97,6 +97,6 @@ public class Card {
 	@Override
 	public String toString() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
-		return String.format("[%s] of [%s]", ""); 
+		return String.format("[%s] of [%s] (point value = [%s])", rank, suit, pointValue); 
 	}
 }
