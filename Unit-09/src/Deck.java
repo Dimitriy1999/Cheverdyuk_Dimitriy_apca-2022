@@ -33,12 +33,14 @@ public class Deck {
 	public Deck(String[] ranks, String[] suits, int[] values) 
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		cards = new Card[1];
+		
+		cards = new Card[ranks.length * suits.length];
 		for(int r = 0; r < ranks.length; r++)
 		{
 			for(int s = 0; s < suits.length; s++)
 			{
-				Card card = new Card(ranks[r], suits[s], values[r]);
+				int cardIndex = (suits.length) * r + s;
+				cards[cardIndex] = new Card(ranks[r], suits[s], values[r]);
 				//;
 			}
 		}
@@ -90,10 +92,9 @@ public class Deck {
 		{
 			return null;
 		}
-		if(size > 0)
-		{
-			size--;
-		}
+		
+		
+		
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 	}
 
