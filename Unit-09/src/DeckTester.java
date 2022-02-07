@@ -30,5 +30,13 @@ public class DeckTester {
 		System.out.println();
 		System.out.println(deckTwo.toString());
 		System.out.println();		
+		
+		String[] rankFour = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+		String[] suitFour = { "Diamonds", "Clubs", "Hearts"};
+		int[] valueFour = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+		Deck deckFour = new Deck(rankFour, suitFour, valueFour);
+		System.out.println("DeckFour dealt card is: " + deckFour.deal());
+		System.out.println("DeckFour dealt card is: " + deckFour.deal());
+
 	}
 }

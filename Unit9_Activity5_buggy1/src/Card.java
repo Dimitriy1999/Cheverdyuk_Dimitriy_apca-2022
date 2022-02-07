@@ -31,31 +31,27 @@ public class Card {
 	 * @param cardPointValue an <code>int</code> value
 	 *                  containing the point value of the card
 	 */
-	
-	public Card(String cardRank, String cardSuit, int cardPointValue)
-	{
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+	public Card(String cardRank, String cardSuit, int cardPointValue) {
+		//initializes a new Card with the given rank, suit, and point value
 		rank = cardRank;
 		suit = cardSuit;
 		pointValue = cardPointValue;
 	}
-	
+
 
 	/**
 	 * Accesses this <code>Card's</code> suit.
 	 * @return this <code>Card's</code> suit.
 	 */
-	public String suit() 
-	{
+	public String suit() {
 		return suit;
-   }
+	}
 
 	/**
 	 * Accesses this <code>Card's</code> rank.
 	 * @return this <code>Card's</code> rank.
 	 */
-	public String rank() 
-	{
+	public String rank() {
 		return rank;
 	}
 
@@ -63,8 +59,7 @@ public class Card {
 	 * Accesses this <code>Card's</code> point value.
 	 * @return this <code>Card's</code> point value.
 	 */
-	public int pointValue() 
-	{
+	public int pointValue() {
 		return pointValue;
 	}
 
@@ -74,14 +69,10 @@ public class Card {
 	 *              are equal to those of the argument;
 	 *         false otherwise.
 	 */
-	public boolean Matches(Card otherCard)
-	{
-		//if the cards are matching with each other so basically if they are equal we return true else false
-		if(rank.equals(otherCard.rank) && pointValue == otherCard.pointValue && suit.equals(otherCard.suit))
-		{
-			return true;
-		}
-		return false;
+	public boolean matches(Card otherCard) {
+		return otherCard.suit().equals(this.suit())
+			&& otherCard.rank().equals(this.rank())
+			&& otherCard.pointValue() == this.pointValue();
 	}
 
 	/**
@@ -95,8 +86,7 @@ public class Card {
 	 *         and point value of the card.
 	 */
 	@Override
-	public String toString() 
-	{
-		return String.format("[%s] of [%s] (point value = [%s])", rank, suit, pointValue); 
+	public String toString() {
+		return rank + " of " + suit + " (point value = " + pointValue + ")";
 	}
 }
