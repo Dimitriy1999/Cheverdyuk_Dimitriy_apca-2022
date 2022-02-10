@@ -20,8 +20,8 @@ public class DeckTester {
 		System.out.println(deckOne.toString());
 		System.out.println();
 
-		String[] rankTwo = { "Jack", "2", "4", "9" };
-		String[] suitTwo = { "Hearts", "Spades", "Clubs" };
+		String[] rankTwo = { "Jack"};
+		String[] suitTwo = { "Hearts"};
 		int[] valueTwo = { 11, 2, 3, 9 };
 		Deck deckTwo = new Deck(rankTwo, suitTwo, valueTwo);
 		System.out.println("DeckTwo is empty: " + deckTwo.isEmpty());
@@ -37,6 +37,5 @@ public class DeckTester {
 		Deck deckFour = new Deck(rankFour, suitFour, valueFour);
 		System.out.println("DeckFour dealt card is: " + deckFour.deal());
 		System.out.println("DeckFour dealt card is: " + deckFour.deal());
-
 	}
 }

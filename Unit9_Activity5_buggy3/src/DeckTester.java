@@ -136,6 +136,7 @@ public class DeckTester {
 			if (!c1.matches(c2)) {
 				allMatch = false;
 			}
+			break;
 		}
 		assert !allMatch : "The sequence of cards in d1 and d2 are identical.";
 	}
