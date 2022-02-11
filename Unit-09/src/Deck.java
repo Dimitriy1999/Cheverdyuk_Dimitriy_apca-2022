@@ -30,6 +30,19 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) 
 	{
+		/*
+ 		cards = new ArrayList<Card>();
+ 		for(int r = 0; r < ranks.length; r++)
+ 		{
+ 			for(int s = 0; s < suits.length; s++)
+ 			{
+ 				Card card = new Card(ranks[r], suits[s], values[r]);
+ 				cards.add(card);
+ 			}
+ 		}
+ 		size = cards.size();
+		 
+		 */
 		cards = new Card[ranks.length * suits.length];
 		for (int r = 0; r < ranks.length; r++) 
 		{
@@ -75,6 +88,15 @@ public class Deck {
 	 */
 	public void shuffle() 
 	{
+		/*
+		 for(int i = cards.size() - 1; i > 0; i--)
+		 {
+		 	int randomNumber = (int)(Math.random()* i + 1);
+		 	Card temp = cards.get(i);
+		 	cards.set(i, cards.get(randomNumber));
+		 	cards.get(randomNumber, cards.set(temp));
+		 }
+		 */
 		for(int i = cards.length - 1; i > 0; i--)
 		{
 			int randomNumber = (int)(Math.random() * i + 1);
@@ -95,6 +117,14 @@ public class Deck {
 	{
 		// Alogirthim 2
 		// decrement the size then need to return card at size index
+		
+		/*
+		 if(size > 0)
+		 {
+		 	size--;
+		 	return cards.get(size);
+		 }
+		 */
 		if (size > 0) 
 		{
 			size--;
