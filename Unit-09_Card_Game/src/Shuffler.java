@@ -62,7 +62,6 @@ public class Shuffler {
 	public static void perfectShuffle(int[] cards) 
 	{
 		int [] shuffleArr = new int [52];
-		//Change randomNumer to something else just not sure what it is right now.
 		int cardPosition = 0;
 		int middleNumber = (cards.length + 1) / 2;
 		for(int i = 0; i <= middleNumber; i++)
