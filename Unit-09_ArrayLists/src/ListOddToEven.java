@@ -1,8 +1,3 @@
-//(c) A+ Computer Science
-//www.apluscompsci.com
-//Name -
-//Date -
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,20 +7,23 @@ public class ListOddToEven
 	{
 		int distance = 0;
 		int firstArrValue = 0;
+    boolean findEven = false;
+    int savedIndex = 0;
 		for(int i = 0; i < ray.size(); i++)
 		{
 			if(ray.get(firstArrValue) % 2 == 0)
 			{
-				if(ray.get(i) % 2 == 1)
+				if(ray.get(i) % 2 == 1 && savedIndex == 0)
 				{
-					distance = i;
+					findEven = true;
+          savedIndex = i; 
 				}
 			}
-			if(ray.get(firstArrValue) % 2 == 1)
+			if(ray.get(firstArrValue) % 2 == 1 || findEven)
 			{
 				if(ray.get(i) % 2 == 0)
 				{
-					distance = i;
+					distance = i - savedIndex;
 				}
 			}
 		}
