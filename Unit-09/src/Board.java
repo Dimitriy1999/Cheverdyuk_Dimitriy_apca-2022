@@ -95,7 +95,8 @@ public abstract class Board {
 	 * @return the card at position k on the board.
 	 * @param k is the board position of the card to return.
 	 */
-	public Card cardAt(int k) {
+	public Card cardAt(int k)
+	{
 		return cards[k];
 	}
 
@@ -104,8 +105,10 @@ public abstract class Board {
 	 * @param selectedCards is a list of the indices of the
 	 *        cards to be replaced.
 	 */
-	public void replaceSelectedCards(List<Integer> selectedCards) {
-		for (Integer k : selectedCards) {
+	public void replaceSelectedCards(List<Integer> selectedCards)
+	{
+		for (Integer k : selectedCards) 
+		{
 			deal(k.intValue());
 		}
 	}
@@ -116,9 +119,11 @@ public abstract class Board {
 	 * @return a List that contains the locations (indexes)
 	 *         of the non-null entries on the board.
 	 */
-	public List<Integer> cardIndexes() {
+	public List<Integer> cardIndexes() 
+	{
 		List<Integer> selected = new ArrayList<Integer>();
-		for (int k = 0; k < cards.length; k++) {
+		for (int k = 0; k < cards.length; k++) 
+		{
 			if (cards[k] != null) {
 				selected.add(new Integer(k));
 			}

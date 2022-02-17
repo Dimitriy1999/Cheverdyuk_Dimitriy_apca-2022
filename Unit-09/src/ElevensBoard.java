@@ -54,7 +54,17 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) 
 	{
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		//Pair = 2
+		if(selectedCards.size() == 2)
+		{
+			return containsPairSum11(selectedCards);
+		}
+		//We just check if we have a Jack Queen and King
+		if(selectedCards.size() == 3)
+		{
+			return containsJQK(selectedCards);
+		}
+		return false;
 	}
 
 	/**
@@ -68,7 +78,13 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean anotherPlayIsPossible() 
 	{
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		//If we have cards that add up to 11 or we have a jack queen or king we can keep going
+		List<Integer> cards = cardIndexes();
+		if(containsPairSum11(cards) || containsJQK(cards))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -81,7 +97,20 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) 
 	{
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for(int i = 0; i < selectedCards.size(); i++)
+		{
+			int cardOneValue = selectedCards.get(i).intValue();
+			for(int j = i + 1; j < selectedCards.size(); j++)
+			{
+				int cardTwoValue = selectedCards.get(j).intValue();
+				//If both cards add up to 11 return true so we can keep playing
+				if(cardAt(cardOneValue).pointValue() + cardAt(cardTwoValue).pointValue() == 11)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -94,6 +123,29 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) 
 	{
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		boolean jack = false;
+		boolean king = false;
+		boolean queen = false;
+		for(int i = 0; i < selectedCards.size(); i++)
+		{
+			int cardValue = selectedCards.get(i).intValue();
+			if(cardAt(cardValue).rank().equals("jack"))
+			{
+				jack = true;
+			}
+			if(cardAt(cardValue).rank().equals("king"))
+			{
+				king = true;
+			}
+			if(cardAt(cardValue).rank().equals("queen"))
+			{
+				queen = true;
+			}
+		}
+		if(jack && queen && king)
+		{
+			return true;
+		}
+		return false;
 	}
 }
