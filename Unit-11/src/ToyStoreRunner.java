@@ -11,6 +11,8 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
-
+		ToyStore list = new ToyStore();
+		System.out.println(list.getThatToy("test"));
+		System.out.println("Most Freqeunt Toy: " + list.getMostFrequentToy());
 	}
 }

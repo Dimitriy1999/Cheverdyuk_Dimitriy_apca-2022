@@ -14,14 +14,23 @@ public class ToyStore
 
 	public ToyStore()
 	{
+		toyList = new ArrayList<Toy>();
 	}
 
 	public void loadToys( String toys )
 	{
+		
 	}
   
   	public Toy getThatToy( String nm )
   	{
+  		for(Toy i : toyList)
+  		{
+  			if(i.getName().equals(nm))
+  			{
+  				return i;
+  			}
+  		}
   		return null;
   	}
   
@@ -32,10 +41,11 @@ public class ToyStore
   
   	public void sortToysByCount()
   	{
+  		//Collections.sort(toyList, toys);
   	}  
   	  
 	public String toString()
 	{
-	   return "";
+	   return toyList.toString();
 	}
 }

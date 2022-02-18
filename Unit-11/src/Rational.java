@@ -38,8 +38,8 @@ class Rational implements Comparable<Rational>
 	
 	public void add(Rational  other)
 	{
-		 setNumerator((numerator * other.denominator ) + (other.numerator * denominator));
-		 setDenominator(denominator * other.denominator);
+		 setNumerator((numerator * denominator ) + (numerator * denominator));
+		 setDenominator(denominator * denominator);
 		 reduce();
 	}
 
