@@ -15,7 +15,7 @@ public class TriangleWordRunner
 		while(keepGoing)
 		{
 			Scanner Keyboard = new Scanner(System.in);
-			out.println("Enter A word :: ");
+			out.print("Enter A word :: ");
 			String inputWord = Keyboard.next();
 			test.setWord(inputWord);
 			System.out.print(test.printTriangle());

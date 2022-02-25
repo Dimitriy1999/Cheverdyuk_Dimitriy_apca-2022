@@ -9,6 +9,7 @@ public class WordPrinterRunner
 {
 	public static void main( String args[] )
 	{
+		WordPrinter test = new WordPrinter();
    	Scanner keyboard = new Scanner(System.in);
    	String choice="";
 		do{
@@ -18,8 +19,8 @@ public class WordPrinterRunner
 			out.print("Enter the times to display :: ");
  			int times = keyboard.nextInt();			
 			
-			//call the printWord method
-
+			test.printWord(word, times);
+			
 			System.out.print("\nDo you want to enter more sample input? ");
 			choice=keyboard.next();			
 		}while(choice.equals("Y")||choice.equals("y"));		
