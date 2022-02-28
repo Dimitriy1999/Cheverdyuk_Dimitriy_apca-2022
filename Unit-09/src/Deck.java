@@ -10,8 +10,8 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	// private List<Card> cards;
-	private Card[] cards;
+	private List<Card> cards;
+	//private Card[] cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards. Cards are dealt from the top
@@ -30,7 +30,7 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) 
 	{
-		/*
+		
  		cards = new ArrayList<Card>();
  		for(int r = 0; r < ranks.length; r++)
  		{
@@ -41,8 +41,9 @@ public class Deck {
  			}
  		}
  		size = cards.size();
+		shuffle();
 		 
-		 */
+ 		/*
 		cards = new Card[ranks.length * suits.length];
 		for (int r = 0; r < ranks.length; r++) 
 		{
@@ -56,6 +57,7 @@ public class Deck {
 
 		size = cards.length;
 		shuffle();
+		*/
 	}
 
 	/**
@@ -88,15 +90,15 @@ public class Deck {
 	 */
 	public void shuffle() 
 	{
-		/*
 		 for(int i = cards.size() - 1; i > 0; i--)
 		 {
 		 	int randomNumber = (int)(Math.random()* i + 1);
 		 	Card temp = cards.get(i);
 		 	cards.set(i, cards.get(randomNumber));
-		 	cards.get(randomNumber, cards.set(temp));
+		 	cards.set(randomNumber, temp);
 		 }
-		 */
+		 size = cards.size();
+		 /*
 		for(int i = cards.length - 1; i > 0; i--)
 		{
 			int randomNumber = (int)(Math.random() * i + 1);
@@ -105,6 +107,7 @@ public class Deck {
 			cards[randomNumber] = temp;
 		}
 		size = cards.length;
+		 */
 	}
 
 	/**
@@ -128,7 +131,7 @@ public class Deck {
 		if (size > 0) 
 		{
 			size--;
-			return cards[size];
+			return cards.get(size);
 		}
 		return null;
 	}
@@ -138,7 +141,8 @@ public class Deck {
 	 * 
 	 * @return a string representation of this deck.
 	 */
-	@Override
+	/*
+	  
 	public String toString() {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
@@ -174,4 +178,5 @@ public class Deck {
 		rtn = rtn + "\n";
 		return rtn;
 	}
+	 */
 }

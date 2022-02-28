@@ -27,6 +27,8 @@ public class ToyStore
 			{
 				Toy toyToAdd = new Toy(strArr[i]);
 				toyList.add(toyToAdd);
+				//need this as when you add it count has to be 1 not 0
+				toyToAdd.setCount(1);
 			}
 			else
 			{
@@ -51,12 +53,12 @@ public class ToyStore
   	public String getMostFrequentToy()
   	{
   		int originalValue = 0;
-  		for(int i = 0; i < toyList.size() - 1; i++)
+  		for(int i = 0; i < toyList.size(); i++)
   		{
   			//check if first value is less than value ahead of it and if so just set the first value to the value bigger
   			if(toyList.get(originalValue).getCount() < toyList.get(i).getCount())
   			{
-  				originalValue = toyList.get(i).getCount();
+  				originalValue = i;
   			}
   		}
   		return "max == " + toyList.get(originalValue).getName();

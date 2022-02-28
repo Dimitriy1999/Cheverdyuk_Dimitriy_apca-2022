@@ -11,15 +11,62 @@ class Rational implements Comparable<Rational>
 	
 	public Rational()
 	{
-		setNumerator(5);
-		setDenominator(10);
+		setNumerator(1);
+		setDenominator(1);
 	}
 
 	public Rational(int num, int den)
 	{
-		setNumerator(num);
-		setDenominator(den);
+		this.setNumerator(num);
+		this.setDenominator(den);
 	}
+	
+	public void setRational(int num, int den)
+	{
+		numerator = num;
+		denominator = den;
+	}
+	
+	public void add(Rational other)
+	{
+		this.setNumerator( (this.numerator* other.denominator ) + ( other.numerator * this.denominator));
+	    this.setDenominator( this.denominator * other.denominator );
+	    reduce();
+	}
+
+	private void reduce()
+	{
+		this.setNumerator(this.numerator / gcd(numerator, denominator));
+	    this.setDenominator(this.denominator / gcd(numerator, denominator));
+	}
+
+	private int gcd(int numOne, int numTwo)
+	{
+		/*
+		int gcd = 1;
+		for(int i = 1; i <= numOne && i <= numTwo; i++)
+		{
+			if(numOne % i == 0 && numTwo % i == 0)
+			{
+				gcd = i;
+			}
+		}
+		return gcd;
+		*/
+		if(numTwo == 0)
+		{
+			return numOne;
+		}
+		return gcd(numTwo, numOne % numTwo);
+	}
+
+	public Object clone ()
+	{
+		return new Rational(this.numerator, this.denominator);
+	}
+
+
+	
 	public void setNumerator(int num)
 	{
 		numerator = num;
@@ -30,48 +77,9 @@ class Rational implements Comparable<Rational>
 		denominator = num;
 	}
 	
-	public void setRational(int num, int den)
-	{
-		numerator = num;
-		denominator = den;
-	}
-	
-	public void add(Rational  other)
-	{
-		 setNumerator((numerator * denominator ) + (numerator * denominator));
-		 setDenominator(denominator * denominator);
-		 reduce();
-	}
-
-	private void reduce()
-	{
-		
-	}
-
-	private int gcd(int numOne, int numTwo)
-	{
-		if(numTwo % 2 == 0)
-		{
-			return numOne;
-		}
-		return gcd(numTwo, numOne % numTwo);
-	}
-
-	public Object clone ()
-	{
-		return "";
-	}
-
-
-	//ACCESSORS
-
-	//write get methods for numerator and denominator
-	
-	
 	public boolean equals( Object obj)
 	{
-
-
+		
 		return false;
 	}
 
@@ -84,7 +92,10 @@ class Rational implements Comparable<Rational>
 
 
 
-	
+	public String toString()
+	{
+		return this.numerator + "/" + this.denominator;
+	}
 	//write  toString() method
 	
 	

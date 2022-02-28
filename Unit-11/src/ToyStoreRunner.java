@@ -12,7 +12,7 @@ public class ToyStoreRunner
 	public static void main( String args[] )
 	{
 		ToyStore list = new ToyStore();
-		list.loadToys("Gi-Joe Test Gi-Joe Test Test");
+		list.loadToys("sorry bat sorry sorry sorry train train teddy teddy ball ball");
 		System.out.println(list);
 		System.out.println(list.getMostFrequentToy());
 		list.sortToysByCount();
