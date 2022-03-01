@@ -36,8 +36,9 @@ class Rational implements Comparable<Rational>
 
 	private void reduce()
 	{
-		this.setNumerator(this.numerator / gcd(numerator, denominator));
-	    this.setDenominator(this.denominator / gcd(numerator, denominator));
+		int temp = gcd(numerator, denominator);
+		this.setNumerator(this.numerator / temp);
+	    this.setDenominator(this.denominator / temp);
 	}
 
 	private int gcd(int numOne, int numTwo)
@@ -64,8 +65,6 @@ class Rational implements Comparable<Rational>
 	{
 		return new Rational(this.numerator, this.denominator);
 	}
-
-
 	
 	public void setNumerator(int num)
 	{
@@ -77,16 +76,34 @@ class Rational implements Comparable<Rational>
 		denominator = num;
 	}
 	
-	public boolean equals( Object obj)
+	public boolean equals( Rational obj)
 	{
-		
+		for(int i = numerator; i <= denominator; i++)
+		{
+			if(numerator * i == obj.numerator && denominator * i == obj.denominator)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 
 	public int compareTo(Rational other)
 	{
 
-
+		Rational number1 = new Rational(numerator, denominator);
+		Rational number2 = new Rational(other.numerator, other.denominator);
+		number1.reduce();
+		number2.reduce();
+		if(number1.denominator < number2.denominator)
+		{
+			return -1;
+		}
+		if(number1.numerator > number2.numerator)
+		{
+			return 1;
+		}
+		
 		return -1;
 	}
 
