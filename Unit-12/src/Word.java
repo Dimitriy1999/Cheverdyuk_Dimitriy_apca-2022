@@ -10,16 +10,24 @@ public class Word implements Comparable<Word>
 
 	public Word( String s )
 	{
-		
+		word = s;
 	}
-
+	
 	public int compareTo( Word rhs )
 	{		
-		return 0;
+		if(word.length() == rhs.word.length())
+		{
+			//if length is equal we need to make sure it's in alphabetical order
+			return word.compareTo(rhs.word);
+		}
+		else
+		{
+			return word.length() - rhs.word.length();	
+		}
 	}
 
 	public String toString()
 	{
-		return "";
+		return word;
 	}
 }
