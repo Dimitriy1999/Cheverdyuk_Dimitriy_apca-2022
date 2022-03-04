@@ -12,6 +12,7 @@ public class MatrixCount1
     										{ 6, 7, 1, 2, 5},
     										{ 6, 7, 8, 9, 0},
     										{ 5, 4, 3, 2, 1}};
+    private static int counter;
 
     public static int count( int val  )
     {
@@ -20,14 +21,21 @@ public class MatrixCount1
 		{
 			for(int j = 0; j < m.length; j++)
 			{
-				System	.out.print(" " + m[i][j] + " ");
+				if(counter == 0)
+				{
+					System	.out.print(" " + m[i][j] + " ");					
+				}
 				if(m[i][j] == val)
 				{
 					countValue++;
 				}
 			}
-			System.out.println();
+			if(counter == 0)
+			{
+				System.out.println();				
+			}
 		}
+		counter++;
 		return countValue;
     }
 }
