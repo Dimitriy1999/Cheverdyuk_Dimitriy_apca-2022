@@ -28,7 +28,8 @@ public class Grid
 	{
 		int endResult = 0;
 		String stringValue = "";
-		String highestValue = "";
+		String highestValueLetter = "";
+		int highestNumber = 0;
 		for(int i = 0; i < vals.length; i++)
 		{
 			for(int j = i; j < vals.length; j++)
@@ -37,8 +38,14 @@ public class Grid
 				stringValue = vals[i];
 			}
 			System.out.println(stringValue + " count is " + endResult);
+			
+			if(highestNumber < endResult)
+			{
+				highestNumber = endResult;
+				highestValueLetter = stringValue;
+			}
 		}
-		return "";
+		return "\n" + highestValueLetter + " Occurs the most.";
 	}
 
 	//returns a count of how many times val occurs in the matrix
