@@ -12,12 +12,11 @@ public class WordSearch
     public WordSearch( int size, String str )
     {
     	m = new String[size][size];
-    	System.out.println(m.length);
     	for(int i = 0; i < m.length; i++)
     	{
     		for(int j = 0; j < m[i].length; j++)
     		{
-    			m[i][j] = str.substring(i, i + 1);
+    			m[i][j] = str.substring(i * size + j, i * size + j 	+ 1);
     		}
     	}
     }
@@ -25,17 +24,41 @@ public class WordSearch
     public boolean isFound( String word )
     {
     	
+    	for(int i = 0; i < m.length; i++)
+    	{
+    		for(int j = 0; j < m[i].length; j++)
+    		{
+    			if(checkLeft(word, i, j))
+    			{
+    				return true;
+    			}    				
+    		}
+    	}
     	return false;
     }
 
 	public boolean checkRight(String w, int r, int c)
    {
-		return false;
+		for(int i = 0; i < w.length() - 1; i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r][c + i]))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public boolean checkLeft(String w, int r, int c)
 	{
-		return false;
+		for(int i = 1; i < w.length(); i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r][c - 1]))
+			{
+				return false;
+			}				
+		}
+		return true;
 	}
 
 	public boolean checkUp(String w, int r, int c)
@@ -75,7 +98,7 @@ public class WordSearch
  		{
  			for(int j = 0; j < m[i].length; j++)
  			{
- 				output += m[i][j];
+ 				output += m[i][j] + " ";
  			}
  			output += "\n";
  		}

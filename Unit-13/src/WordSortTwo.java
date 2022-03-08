@@ -40,6 +40,6 @@ public class WordSortTwo
 			output += wordRay[i];
 			output += "\n";
 		}
-		return output;
+		return output + "\n";
 	}
 }
