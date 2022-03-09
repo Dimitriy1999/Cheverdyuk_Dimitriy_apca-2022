@@ -16,7 +16,7 @@ public class WordSearch
     	{
     		for(int j = 0; j < m[i].length; j++)
     		{
-    			m[i][j] = str.substring(i * size + j, i * size + j 	+ 1);
+    			m[i][j] = str.substring(i * size + j, i * size + j + 1);
     		}
     	}
     }
@@ -39,6 +39,11 @@ public class WordSearch
 
 	public boolean checkRight(String w, int r, int c)
    {
+		if(c - w.length() < 0)
+		{
+			return false;
+		}
+		
 		for(int i = 0; i < w.length() - 1; i++)
 		{
 			if(!w.substring(i, i + 1).equals(m[r][c + i]))
@@ -51,44 +56,112 @@ public class WordSearch
 
 	public boolean checkLeft(String w, int r, int c)
 	{
-		for(int i = 1; i < w.length(); i++)
+		if(c - w.length() < 0)
 		{
-			if(!w.substring(i, i + 1).equals(m[r][c - 1]))
+			return false;
+		}
+		for(int i = 0; i < w.length(); i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r][c - i]))
 			{
 				return false;
-			}				
+			}		
 		}
 		return true;
 	}
 
 	public boolean checkUp(String w, int r, int c)
 	{
-		return false;
+		if(r - w.length() < m.length)
+		{
+			return false;
+		}
+		for(int i = 0; i < w.length() - 1; i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r - i][c]))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public boolean checkDown(String w, int r, int c)
    {
-	   return false;
+		if(r + w.length() > m.length)
+		{
+			return false;
+		}
+		for(int i = 0; i < w.length() - 1; i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r + i][c]))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public boolean checkDiagUpRight(String w, int r, int c)
 	{
-		return false;
+		if(r - w.length() < 0 || c + w.length() > 0)
+		{
+			return false;
+		}
+		for(int i = 0; i < w.length();i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r - i][c + i]))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public boolean checkDiagUpLeft(String w, int r, int c)
 	{
-		return false;
+		if(r - w.length() < 0 || c + w.length() > 0)
+		{
+			return false;
+		}
+		for(int i = 0; i < w.length();i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r + i][c - i]))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public boolean checkDiagDownLeft(String w, int r, int c)
    {
-		return false;
+		if(r + w.length() > m.length || c + w.length() < 0)
+		{
+			for(int i = 0; i < w.length(); i++)
+			{
+				if(!w.substring(i, i + 1).equals(m[r + i][c - i]))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public boolean checkDiagDownRight(String w, int r, int c)
 	{
-		return false;
+		if(r + w.length() > m.length || c + w.length() < 0)
+		{
+			for(int i = 0; i < w.length(); i++)
+			{
+				if(!w.substring(i, i + 1).equals(m[r + i][c + i]))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
     public String toString()
