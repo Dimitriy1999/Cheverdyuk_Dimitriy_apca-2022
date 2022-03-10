@@ -28,10 +28,39 @@ public class WordSearch
     	{
     		for(int j = 0; j < m[i].length; j++)
     		{
+    	
+    			if(checkRight(word, i, j))
+    			{
+    				return true;
+    			} 
     			if(checkLeft(word, i, j))
     			{
     				return true;
-    			}    				
+    			} 
+    			if(checkUp(word, i, j))
+    			{
+    				return true;
+    			} 
+    			if(checkDown(word, i, j))
+    			{
+    				return true;
+    			}    
+    			if(checkDiagUpRight(word, i, j))
+    			{
+    				return true;
+    			}    
+    			if(checkDiagUpLeft(word, i, j))
+    			{
+    				return true;
+    			}    
+    			if(checkDiagDownRight(word, i, j))
+    			{
+    				return true;
+    			}   
+    			if(checkDiagDownLeft(word, i, j))
+    			{
+    				return true;
+    			}    
     		}
     	}
     	return false;
@@ -39,12 +68,12 @@ public class WordSearch
 
 	public boolean checkRight(String w, int r, int c)
    {
-		if(c - w.length() < 0)
+		if(c > m.length - w.length())
 		{
 			return false;
 		}
 		
-		for(int i = 0; i < w.length() - 1; i++)
+		for(int i = 0; i < w.length(); i++)
 		{
 			if(!w.substring(i, i + 1).equals(m[r][c + i]))
 			{
@@ -56,7 +85,10 @@ public class WordSearch
 
 	public boolean checkLeft(String w, int r, int c)
 	{
-		if(c - w.length() < 0)
+		//1 2 3 4 5 6 7
+		//c = 2
+		//w = 3
+		if(c < w.length() - 1)
 		{
 			return false;
 		}
@@ -72,7 +104,7 @@ public class WordSearch
 
 	public boolean checkUp(String w, int r, int c)
 	{
-		if(r - w.length() < m.length)
+		if(r < w.length() - 1)
 		{
 			return false;
 		}
@@ -88,7 +120,7 @@ public class WordSearch
 
 	public boolean checkDown(String w, int r, int c)
    {
-		if(r + w.length() > m.length)
+		if(c > w.length() - 1)
 		{
 			return false;
 		}
@@ -136,14 +168,15 @@ public class WordSearch
 
 	public boolean checkDiagDownLeft(String w, int r, int c)
    {
-		if(r + w.length() > m.length || c + w.length() < 0)
+		if(r > w.length() - 1 || c < w.length() - 1)
 		{
-			for(int i = 0; i < w.length(); i++)
+			return false;
+		}
+		for(int i = 0; i < w.length(); i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r + i][c - i]))
 			{
-				if(!w.substring(i, i + 1).equals(m[r + i][c - i]))
-				{
-					return false;
-				}
+				return false;
 			}
 		}
 		return true;
@@ -151,14 +184,15 @@ public class WordSearch
 
 	public boolean checkDiagDownRight(String w, int r, int c)
 	{
-		if(r + w.length() > m.length || c + w.length() < 0)
+		if(r < w.length() - 1 || c > w.length() - 1)
 		{
-			for(int i = 0; i < w.length(); i++)
+			return false;
+		}
+		for(int i = 0; i < w.length(); i++)
+		{
+			if(!w.substring(i, i + 1).equals(m[r + i][c + i]))
 			{
-				if(!w.substring(i, i + 1).equals(m[r + i][c + i]))
-				{
-					return false;
-				}
+				return false;
 			}
 		}
 		return true;
