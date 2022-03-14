@@ -17,10 +17,9 @@ public class Grid
 		{
 			for(int j = 0; j < grid[i].length; j++)
 			{
-				grid[i][j] = vals[(int) (Math.random() * 5)];
+				grid[i][j] = vals[(int) (Math.random() * vals.length)];
 			}
 		}
-		
 	}
 
 	//find out which of the vals occurs the most
