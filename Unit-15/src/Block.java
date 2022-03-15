@@ -44,6 +44,14 @@ public class Block implements Locatable
 		setWidth(w);
 		setHeight(h);
 	}
+	
+	public Block(int x, int y, int w, int h, int s)
+	{
+		setX(x);
+		setY(y);
+		setWidth(w);
+		setHeight(h);
+	}
 
 	//add other Block constructors - x , y , width, height, color
 	
@@ -124,13 +132,12 @@ public class Block implements Locatable
    public void draw(Graphics window, Color col)
    {
 	   window.setColor(col);
-	   window.fillRect(xPos, yPos, width, height);
+	   window.fillRect(getX(), getY(), getWidth(), getHeight());
    }
    
-	public boolean equals(Object obj)
+	public boolean equals(Block block)
 	{
-		Block block = new Block();
-		if(getX() == block.getX() && getY() == block.getY())
+		if(getX() == block.getX() && getY() == block.getY() && getWidth() == block.getWidth() && getHeight() == block.getHeight())
 		{
 			return true;
 		}
@@ -140,7 +147,7 @@ public class Block implements Locatable
     
 	public String toString()
 	{
-		return getX() + " " + getY() + " " + getWidth()+ " " + getHeight()+ " " + getColor();
+		return "xPos: " + getX() + " " + "yPos: " + getY() + " " + "Width: " + getWidth()+ " " + "Height: " + getHeight()+ " " + "Color: " + getColor();
 	}
    //add a toString() method  - x , y , width, height, color
 }
