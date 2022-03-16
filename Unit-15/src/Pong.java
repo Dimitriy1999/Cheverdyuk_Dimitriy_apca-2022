@@ -39,7 +39,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		addKeyListener(this);		//starts the key thread to log key strokes
 	}
 	
-   public void update(Graphics window){
+   public void update(Graphics window)
+   {
 	   paint(window);
    }
 

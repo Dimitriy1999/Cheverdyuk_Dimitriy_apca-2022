@@ -149,5 +149,4 @@ public class Block implements Locatable
 	{
 		return "xPos: " + getX() + " " + "yPos: " + getY() + " " + "Width: " + getWidth()+ " " + "Height: " + getHeight()+ " " + "Color: " + getColor();
 	}
-   //add a toString() method  - x , y , width, height, color
 }
