@@ -26,6 +26,7 @@ public class Paddle extends Block
    {
 	  super(x, y, w, 50);
 	  setSpeed(5);
+	  setColor(Color.black);
    }
    
    

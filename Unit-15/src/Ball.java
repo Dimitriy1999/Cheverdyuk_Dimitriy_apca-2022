@@ -12,10 +12,10 @@ public class Ball extends Block
 
 	public Ball()
 	{
-		super(200,200, 5, 5);
+		super(200,200, 15, 15);
 		//note: Remember to change this back was just having fun
-		xSpeed = (int) (Math.random() * 5);
-		ySpeed = (int) (Math.random() * 5);
+		xSpeed = 3;
+		ySpeed = 1;
 	}
 
 	//add the other Ball constructors
@@ -51,10 +51,9 @@ public class Ball extends Block
    public void moveAndDraw(Graphics window)
    {
    	  //draw a white ball at old ball location
-	   //draw(window, Color.white);
+	  draw(window, Color.white);
       setX(getX() + xSpeed);
       setY(getY() + ySpeed);
-      
       draw(window, Color.black);
 		//draw the ball at its new location
    }
