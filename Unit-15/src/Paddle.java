@@ -48,17 +48,33 @@ public class Paddle extends Block
 	   speed = s;
    }
 
+   public boolean CheckPaddle()
+   {
+	   if(getY() + getHeight() <= 475)
+	   {
+		   return true;
+	   }
+	   return false;
+   }
    public void moveUpAndDraw(Graphics window)
    {
 	   draw(window, Color.white);
-	   setY(getY() + getSpeed());
+	   if(CheckPaddle())
+	   {
+		 setY(getY() + getSpeed());
+	   }
 	   draw(window, Color.black);
    }
+   
+   //Makes sure paddle does not go out of bounds
 
    public void moveDownAndDraw(Graphics window)
    {
 	   draw(window, Color.white);
-	   setY(getY() - getSpeed());
+	   if(CheckPaddle())
+	   {
+		   setY(getY() - getSpeed());
+	   }
 	   draw(window, Color.black);
    }
 

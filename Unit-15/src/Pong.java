@@ -20,11 +20,15 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private Paddle rightPaddle;
 	private boolean[] keys;
 	private BufferedImage back;
-	private int leftSideScore;
+	private int leftPaddleScore;
+	private int rightPaddleScore;
+	private boolean resetGame;
 
 	public Pong()
 	{
-		leftSideScore = 0;
+		leftPaddleScore = 0;
+		rightPaddleScore = 0;
+		resetGame = false;
 		//set up all variables related to the game
 		ball = new Ball();
 		leftPaddle = new Paddle(10, 50, 10);
@@ -61,19 +65,34 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
-
-
-		ball.moveAndDraw(graphToBack);
+		
+		ball.moveAndDraw(graphToBack);			
 		leftPaddle.draw(graphToBack);
 		rightPaddle.draw(graphToBack);
 		
 		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=10 && ball.getX()<=780))
+		/*
+		if(!(ball.getX()>= 0 && ball.getX()<=780))
 		{
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
 		}
-
+		*/
+		if(!(ball.getX() >= -15))
+		{
+			rightPaddleScore++;
+			//800 and 600 is the size of the window
+			ball.setPos(800 / 2, 600 / 2);
+			resetGame = true;
+		}
+		
+		if(!(ball.getX() <= 805))
+		{
+			leftPaddleScore++;
+			//800 and 600 is the size of the window
+			ball.setPos(800 / 2, 600 / 2);
+			resetGame = true;
+		}
 		
 		//see if the ball hits the top or bottom wall 
 		if(!(ball.getY() >= 10 && ball.getY() <= 450))
@@ -134,7 +153,11 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		}
 		
 		twoDGraph.drawImage(back, null, 0, 0);
-		//twoDGraph.drawString("Test", 50, 50);
+		int x = 50;
+		int y = 500;
+		twoDGraph.drawString("Left Paddle Score: " + leftPaddleScore, x, y);
+		twoDGraph.drawString("Right Paddle Score: " + rightPaddleScore, x + 450, y);
+		twoDGraph.drawString("Left Paddle Height Position: " + (leftPaddle.getHeight() + leftPaddle.getY()), x + 450, y - 450);
 	}
 
 	public void keyPressed(KeyEvent e)

@@ -12,10 +12,19 @@ public class Ball extends Block
 
 	public Ball()
 	{
-		super(200,200, 15, 15);
-		//note: Remember to change this back was just having fun
+		super((int)(Math.random() * 450) + 20, (int)(Math.random() * 450) + 20, 10, 10);
+		
 		xSpeed = 3;
-		ySpeed = 1;
+		ySpeed = 3;
+		
+		if ((int)(Math.random() * 2) == 1) {
+			xSpeed = -1 * xSpeed;
+		}
+		
+		if ((int)(Math.random() * 2) == 1) {
+			ySpeed = -1 * ySpeed;
+		}  
+		   setColor(Color.black);
 	}
 
 	//add the other Ball constructors
