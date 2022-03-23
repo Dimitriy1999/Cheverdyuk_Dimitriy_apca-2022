@@ -22,13 +22,11 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private BufferedImage back;
 	private int leftPaddleScore;
 	private int rightPaddleScore;
-	private boolean resetGame;
 
 	public Pong()
 	{
 		leftPaddleScore = 0;
 		rightPaddleScore = 0;
-		resetGame = false;
 		//set up all variables related to the game
 		ball = new Ball();
 		leftPaddle = new Paddle(10, 50, 10);
@@ -83,7 +81,13 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			rightPaddleScore++;
 			//800 and 600 is the size of the window
 			ball.setPos(800 / 2, 600 / 2);
-			resetGame = true;
+			if ((int)(Math.random() * 2) == 1) {
+				ball.setXSpeed(-1 * ball.getXSpeed());
+			}
+			
+			if ((int)(Math.random() * 2) == 1) {
+				ball.setYSpeed(-1 * ball.getYSpeed());
+			}  
 		}
 		
 		if(!(ball.getX() <= 805))
@@ -91,7 +95,15 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			leftPaddleScore++;
 			//800 and 600 is the size of the window
 			ball.setPos(800 / 2, 600 / 2);
-			resetGame = true;
+			if ((int)(Math.random() * 2) == 1) 
+			{
+				ball.setXSpeed(-1 * ball.getXSpeed());
+			}
+			
+			if ((int)(Math.random() * 2) == 1)
+			{
+				ball.setYSpeed(-1 * ball.getYSpeed());
+			}  
 		}
 		
 		//see if the ball hits the top or bottom wall 
@@ -134,20 +146,20 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			}
 		}		
 		//see if the paddles need to be moved
-		if(keys[0] == true)
+		if(keys[0] == true && leftPaddle.getY() < 425)
 		{
 			leftPaddle.moveUpAndDraw(graphToBack);
 		}
 		//move left paddle down and draw it on the window
-		if(keys[1] == true)
+		if(keys[1] == true && leftPaddle.getY() > 10)
 		{
 			leftPaddle.moveDownAndDraw(graphToBack);
 		}
-		if(keys[2] == true)
+		if(keys[2] == true && rightPaddle.getY() < 425)
 		{
 			rightPaddle.moveUpAndDraw(graphToBack);
 		}
-		if(keys[3] == true)
+		if(keys[3] == true && rightPaddle.getY() > 10)
 		{
 			rightPaddle.moveDownAndDraw(graphToBack);
 		}
@@ -157,17 +169,24 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		int y = 500;
 		twoDGraph.drawString("Left Paddle Score: " + leftPaddleScore, x, y);
 		twoDGraph.drawString("Right Paddle Score: " + rightPaddleScore, x + 450, y);
-		twoDGraph.drawString("Left Paddle Height Position: " + (leftPaddle.getHeight() + leftPaddle.getY()), x + 450, y - 450);
 	}
 
 	public void keyPressed(KeyEvent e)
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=true; break;
-			case 'Z' : keys[1]=true; break;
-			case 'I' : keys[2]=true; break;
-			case 'M' : keys[3]=true; break;
+			case 'W' : 
+				keys[0]=true; 
+				break;
+			case 'Z' :
+				keys[1]=true;
+				break;					
+			case 'I' : 
+				keys[2]=true; 
+				break;
+			case 'M' : 
+				keys[3]=true; 
+				break;
 		}
 	}
 
@@ -175,10 +194,18 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=false; break;
-			case 'Z' : keys[1]=false; break;
-			case 'I' : keys[2]=false; break;
-			case 'M' : keys[3]=false; break;
+			case 'W' : 
+				keys[0]=false; 
+				break;
+			case 'Z' : 
+				keys[1]=false; 
+				break;
+			case 'I' : 
+				keys[2]=false; 
+				break;
+			case 'M' : 
+				keys[3]=false; 
+				break;
 		}
 	}
 
