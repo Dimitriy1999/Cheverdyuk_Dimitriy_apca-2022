@@ -29,8 +29,12 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		rightPaddleScore = 0;
 		//set up all variables related to the game
 		ball = new Ball();
-		leftPaddle = new Paddle(10, 50, 10);
-		rightPaddle = new Paddle(750, 50, 10);
+		int x = 10;
+		int y = RandomYPaddle();
+		leftPaddle = new Paddle(x, y, 10);
+		//Forces Y to have different values
+		y = RandomYPaddle();
+		rightPaddle = new Paddle(x + 750, y, 10);
 
 		keys = new boolean[5];
 
@@ -41,6 +45,16 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		new Thread(this).start();
 		addKeyListener(this);		//starts the key thread to log key strokes
 	}
+	
+   public int RandomYPaddle()
+   {
+	 int randomY = (int)(Math.random() * 450);
+	 if(randomY < 30)
+	 {
+		 randomY = 35;
+	 }
+	 return randomY;
+   }
 	
    public void update(Graphics window)
    {
