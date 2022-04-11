@@ -51,6 +51,25 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testMirrorVerticalRightToLeft()
+  {
+	  Picture picture = new Picture("caterpillar.jpg");
+	  Pixel[][] pixels = picture.getPixels2D();
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+	  int width = pixels[0].length;
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  for (int col = width / 2; col > 0; col--)
+	  		{
+			  leftPixel = pixels[row][col];
+			  rightPixel = pixels[row][width - 1 - col];
+			  rightPixel.setColor(leftPixel.getColor());
+	  		}
+	}
+	  picture.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -58,8 +77,8 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
-    
+    //testZeroBlue();
+	  testMirrorVerticalRightToLeft();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();

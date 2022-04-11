@@ -794,7 +794,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
       return colValue;
     }
   }
-  
+  //Hints : write a class from a parent class and write a child class, and write some methods in the child class
+  //MC: what happesns when you instantiate this object that is a child from a parent class
   /**
    * Test Main.  It will explore the beach 
    */
