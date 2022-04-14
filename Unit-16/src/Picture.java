@@ -124,7 +124,6 @@ public class Picture extends SimplePicture
     int mirrorPoint = 276;
     Pixel leftPixel = null;
     Pixel rightPixel = null;
-    int count = 0;
     Pixel[][] pixels = this.getPixels2D();
     
     // loop through the rows
@@ -142,6 +141,59 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void mirrorArm()
+  {
+	  int mirrorPoint = 180;
+	    Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    Pixel[][] pixels = this.getPixels2D();
+	    
+	    // loop through the rows
+	    for (int row = 160; row < mirrorPoint; row++)
+	    {
+	      for (int col = 100; col < 160; col++)
+	      {
+	        
+	        leftPixel = pixels[row][col];      
+	        rightPixel = pixels[row + 27]                       
+	                         [mirrorPoint - col + mirrorPoint + 38];
+	        rightPixel.setColor(leftPixel.getColor());
+	      }
+	    }
+	    
+	    //Second Arm
+	    for (int row = 168; row < 188; row++)
+	    {
+	      for (int col = 240; col < 300; col++)
+	      {
+	        
+	        leftPixel = pixels[row][col];      
+	        rightPixel = pixels[row + 15]                       
+	                         [mirrorPoint - col + mirrorPoint + 50];
+	        rightPixel.setColor(leftPixel.getColor());
+	      }
+	    }
+  }
+  
+  public void mirrorGull()
+  {
+	  int mirrorPoint = 240;
+	    Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    Pixel[][] pixels = this.getPixels2D();
+	    
+	    // loop through the rows
+	    for (int row = 235; row < 320; row++)
+	    {
+	      for (int col = 238; col < 345; col++)
+	      {
+	        	leftPixel = pixels[row][col];      
+	        	rightPixel = pixels[row]                       
+	        			[mirrorPoint - col + mirrorPoint + 225];
+	        	rightPixel.setColor(leftPixel.getColor());
+	      }
+	    }
+  }
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
@@ -319,6 +371,7 @@ public class Picture extends SimplePicture
 	    length = pixels[0].length;
 	  }
 	return length;
+	
   }
   
   public void mirrorBottomLeftToTopRight() 

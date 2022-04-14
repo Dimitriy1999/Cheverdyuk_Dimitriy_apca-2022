@@ -119,6 +119,20 @@ public class PictureTester
 	  swan.KeepOnlyBlue();
 	  swan.explore();
   }
+  
+  public static void TestMirrorArm()
+  {
+	  Picture snowman = new Picture("snowman.jpg");
+	  snowman.mirrorArm();
+	  snowman.explore();
+  }
+  
+  public static void TestMirrorGull()
+  {
+	  Picture gull = new Picture("seagull.jpg");
+	  gull.mirrorGull();
+	  gull.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -137,12 +151,14 @@ public class PictureTester
 	  	testMirrorVerticalRightToLeft(); 
 	 	testMirrorHorizontal();
 	  	testMirrorHorizontalBottomToTop();
+	  	testMirrorBottomLeftToTopRight();
+	  	testMirrorTemple();
+	  	TestMirrorArm();
 	   */
-	  testMirrorBottomLeftToTopRight();
+	  TestMirrorGull();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testMirrorVertical();
-    //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
