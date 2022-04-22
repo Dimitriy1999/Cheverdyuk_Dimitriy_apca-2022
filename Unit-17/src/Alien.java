@@ -16,17 +16,17 @@ public class Alien extends MovingThing
 
 	public Alien()
 	{
-		this(0,0,30,30,0);
+		this(0,0,30,30,1);
 	}
 
 	public Alien(int x, int y)
 	{
-		//add code here
+		this(x, y, 30, 30, 1);
 	}
 
 	public Alien(int x, int y, int s)
 	{
-		//add code here
+		this(x, y, 30, 30, s);
 	}
 
 	public Alien(int x, int y, int w, int h, int s)
@@ -35,23 +35,22 @@ public class Alien extends MovingThing
 		speed=s;
 		try
 		{
-			URL url = getClass().getResource("/images/alien.jpg");
-			image = ImageIO.read(url);
+			image = ImageIO.read(new File("C:\\Users\\cheverdyukd8338\\Desktop\\APCS-A-2022\\GitHub\\Cheverdyuk_Dimitriy_apca-2022\\Unit-17\\images\\alien.jpg"));
 		}
 		catch(Exception e)
 		{
-			//feel free to do something here
+			System.out.println("No image Found");
 		}
 	}
 
 	public void setSpeed(int s)
 	{
-	   //add code
+	   speed = s;
 	}
 
 	public int getSpeed()
 	{
-	   return 0;
+	   return speed;
 	}
 
    public void move(String direction)

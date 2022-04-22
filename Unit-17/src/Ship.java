@@ -35,12 +35,12 @@ public class Ship extends MovingThing
 		speed=s;
 		try
 		{
-			URL url = getClass().getResource("/images/ship.jpg");
-			image = ImageIO.read(url);
+			image = ImageIO.read(new File("C:\\Users\\cheverdyukd8338\\Desktop\\APCS-A-2022\\GitHub\\Cheverdyuk_Dimitriy_apca-2022\\Unit-17\\images\\ship.jpg"));
 		}
 		catch(Exception e)
 		{
-			System.out.print("No Image\n");
+			System.out.print("Found no Image\n");
+			
 		}
 	}
 
@@ -76,7 +76,7 @@ public class Ship extends MovingThing
 
 	public void draw( Graphics window )
 	{
-   	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+		window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
 	}
 
 	public String toString()
