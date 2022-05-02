@@ -19,7 +19,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
-	private Ammo ammo;
+	private ArrayList<Ammo> ammoList;
 
 
 	/* uncomment once you are ready for this part
@@ -42,7 +42,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		ship = new Ship(600, 450, 100, 100, 2);
 		alienOne = new Alien(600, 200, 0);
 		alienTwo = new Alien();
-		
+		ammoList = new ArrayList<Ammo>();
 		//Ship, Alien
 
 		this.addKeyListener(this);
@@ -92,15 +92,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			ship.move("DOWN");
 		}
 		
-		if(keys[4] == false)
+		if(keys[4] == true)
 		{
-			ammo = new Ammo(ship.getX() + ship.getWidth() / 2 - 7, ship.getY());
+			ammoList.add(new Ammo(ship.getX() + ship.getWidth() / 2 - 7, ship.getY()));
+			keys[4] = false;
 		}
-		else
-		{
-			ammo.move("SPACE");
-		}
-
+		
+		MoveBullet(graphToBack);
 		//add code to move Ship, Alien, etc.
 
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
@@ -108,10 +106,18 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		twoDGraph.drawImage(back, null, 0, 0);
 		ship.draw(twoDGraph);
 		alienOne.draw(twoDGraph);
-		ammo.draw(twoDGraph);
 	}
 
-
+	public void MoveBullet(Graphics graph)
+	{
+		for(int i = 0; i < ammoList.size(); i++)
+		{
+			Ammo ammo = ammoList.get(i);
+			ammo.draw(graph);
+			ammo.move("UP");
+		}
+	}
+	
 	public void keyPressed(KeyEvent e)
 	{
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)

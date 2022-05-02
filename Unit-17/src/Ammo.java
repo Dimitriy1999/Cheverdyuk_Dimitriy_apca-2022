@@ -48,10 +48,10 @@ public class Ammo extends MovingThing
 	
 	public void move( String direction )
 	{
-		super.setY(getY() - speed);
 		switch(direction)
 		{
-		case "SPACE":
+		case "UP":
+			super.setY(getY() - speed);
 		}
 	}
 
