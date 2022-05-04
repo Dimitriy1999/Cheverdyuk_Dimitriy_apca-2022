@@ -18,13 +18,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
 	private Alien alienOne;
-	private Alien alienTwo;
 	private ArrayList<Ammo> ammoList;
 
 
 	/* uncomment once you are ready for this part
 	 *
-   private AlienHorde horde;
+    private AlienHorde horde;
 	private Bullets shots;
 	*/
 
@@ -41,7 +40,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 						//X   Y   W   H   S
 		ship = new Ship(600, 450, 100, 100, 2);
 		alienOne = new Alien(600, 200, 0);
-		alienTwo = new Alien();
 		ammoList = new ArrayList<Ammo>();
 		//Ship, Alien
 
@@ -99,6 +97,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		
 		MoveBullet(graphToBack);
+		ClearBullets();
 		//add code to move Ship, Alien, etc.
 
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
@@ -116,6 +115,29 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			ammo.draw(graph);
 			ammo.move("UP");
 		}
+	}
+	
+	public void ClearBullets()
+	{
+		for(int i = 0; i < ammoList.size(); i++)
+		{
+			Ammo ammo = ammoList.get(i);
+			if(CheckBulletCollosionEnemy(ammo))
+			{
+				ammoList.remove(i);
+				System.out.println("Bullet Position X " + ammo.getX() + " Bullet Pos Y " + ammo.getY() + " Enemy Position: " + alienOne.getX() + " " + alienOne.getY());
+			}
+		}
+	}
+	
+	public boolean CheckBulletCollosionEnemy(Ammo ammo)
+	{
+		if(ammo.getX() <= alienOne.getX() + alienOne.getWidth() + Math.abs(ammo.getSpeed()) 
+		&& (ammo.getY() >= alienOne.getY() && ammo.getY() <= alienOne.getY() + alienOne.getHeight()) && !(ammo.getX() < alienOne.getX()))
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	public void keyPressed(KeyEvent e)

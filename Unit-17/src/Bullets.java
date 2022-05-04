@@ -20,24 +20,34 @@ public class Bullets
 
 	public void add(Ammo al)
 	{
+		ammo.add(al);
 	}
 
 	//post - draw each Ammo
 	public void drawEmAll( Graphics window )
 	{
+		for(int i = 0; i < ammo.size(); i++)
+		{
+			ammo.get(i).draw(window);
+		}
 	}
 
 	public void moveEmAll()
 	{
+		for(int i = 0; i < ammo.size(); i++)
+		{
+			ammo.get(i).move("UP");
+		}
 	}
 
 	public void cleanEmUp()
 	{
+		
 	}
 
 	public List<Ammo> getList()
 	{
-		return null;
+		return ammo;
 	}
 
 	public String toString()
