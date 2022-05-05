@@ -13,22 +13,17 @@ import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.Timer;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private Alien alienOne;
-	private ArrayList<Ammo> ammoList;
-
-
-	/* uncomment once you are ready for this part
-	 *
+	private Alien alien;
     private AlienHorde horde;
 	private Bullets shots;
-	*/
-
 	private boolean[] keys;
 	private BufferedImage back;
+	private Timer alienTimer;
 
 	public OuterSpace()
 	{
@@ -39,10 +34,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//instantiate other instance variables
 						//X   Y   W   H   S
 		ship = new Ship(600, 450, 100, 100, 2);
-		alienOne = new Alien(600, 200, 0);
-		ammoList = new ArrayList<Ammo>();
-		//Ship, Alien
-
+		shots = new Bullets();
+		alien = new Alien(5, 5, 1);
+		horde = new AlienHorde(1);
+		horde.add(alien);
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -92,53 +87,32 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		if(keys[4] == true)
 		{
-			ammoList.add(new Ammo(ship.getX() + ship.getWidth() / 2 - 7, ship.getY()));
+			shots.add(new Ammo(ship.getX() + ship.getWidth() / 2 - 7, ship.getY(), 3));
 			keys[4] = false;
 		}
-		
-		MoveBullet(graphToBack);
-		ClearBullets();
+		SpawnHorde();
+		CollisionCheck();
+		shots.drawEmAll(graphToBack);
+		shots.moveEmAll();
+		horde.drawEmAll(graphToBack);
 		//add code to move Ship, Alien, etc.
 
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 
 		twoDGraph.drawImage(back, null, 0, 0);
 		ship.draw(twoDGraph);
-		alienOne.draw(twoDGraph);
 	}
 
-	public void MoveBullet(Graphics graph)
+	public void CollisionCheck()
 	{
-		for(int i = 0; i < ammoList.size(); i++)
-		{
-			Ammo ammo = ammoList.get(i);
-			ammo.draw(graph);
-			ammo.move("UP");
-		}
+		horde.removeDeadOnes(shots.getList());
 	}
 	
-	public void ClearBullets()
+	public void SpawnHorde()
 	{
-		for(int i = 0; i < ammoList.size(); i++)
-		{
-			Ammo ammo = ammoList.get(i);
-			if(CheckBulletCollosionEnemy(ammo))
-			{
-				ammoList.remove(i);
-				System.out.println("Bullet Position X " + ammo.getX() + " Bullet Pos Y " + ammo.getY() + " Enemy Position: " + alienOne.getX() + " " + alienOne.getY());
-			}
-		}
+		//horde.add(alien);
 	}
 	
-	public boolean CheckBulletCollosionEnemy(Ammo ammo)
-	{
-		if(ammo.getX() <= alienOne.getX() + alienOne.getWidth() + Math.abs(ammo.getSpeed()) 
-		&& (ammo.getY() >= alienOne.getY() && ammo.getY() <= alienOne.getY() + alienOne.getHeight()) && !(ammo.getX() < alienOne.getX()))
-		{
-			return true;
-		}
-		return false;
-	}
 	
 	public void keyPressed(KeyEvent e)
 	{

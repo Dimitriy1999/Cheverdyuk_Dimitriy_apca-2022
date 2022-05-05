@@ -16,6 +16,7 @@ public class Bullets
 
 	public Bullets()
 	{
+		ammo = new ArrayList<Ammo>();
 	}
 
 	public void add(Ammo al)
@@ -40,9 +41,9 @@ public class Bullets
 		}
 	}
 
-	public void cleanEmUp()
+	public void cleanEmUp(int index)
 	{
-		
+		ammo.remove(index);
 	}
 
 	public List<Ammo> getList()
