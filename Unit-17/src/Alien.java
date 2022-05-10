@@ -55,7 +55,18 @@ public class Alien extends MovingThing
 
    public void move(String direction)
 	{
-	   //add code here
+	   switch(direction)
+	   {
+	   case "DOWN":
+		   super.setY(getY() + speed);
+		   break;
+	   case "RIGHT":
+		   super.setX(getX() + speed);
+		   break;
+	   case "LEFT":
+		   super.setX(getX() - speed);
+		   break;
+	   }
 	}
 
 	public void draw( Graphics window )

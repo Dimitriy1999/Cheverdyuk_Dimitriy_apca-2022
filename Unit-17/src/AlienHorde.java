@@ -13,12 +13,17 @@ import java.util.List;
 public class AlienHorde
 {
 	private List<Alien> aliens;
-
+	private int updateYPos;
+	private boolean check;
 	public AlienHorde(int size)
 	{
+		updateYPos = 30;
+		check = true;
 		aliens = new ArrayList<Alien>();
 		for(int i = 0; i < size; i++)
 		{
+			/*
+			
 			int x = (int)(Math.random() * 700);
 			int y = (int)(Math.random() * 300);
 			if(CheckAlienPosition() && aliens.size() > 0)
@@ -30,6 +35,8 @@ public class AlienHorde
 			{
 				aliens.add(new Alien(x, y));
 			}
+			 */
+			aliens.add(new Alien(1, 1));
 		}
 	}
 
@@ -66,9 +73,29 @@ public class AlienHorde
 
 	public void moveEmAll()
 	{
+		//ToDo: Fix Right condition as once we add to updateYPos it won't work
 		for(int i = 0; i < aliens.size(); i++)
 		{
-			aliens.get(i).move("DOWN");
+			Alien alien = aliens.get(i);
+			if(alien.getX() < 750 && alien.getY() == updateYPos - 29)
+			{
+				alien.move("RIGHT");
+			}
+			if((alien.getX() >= 750 || alien.getX() <= 1) && alien.getY() <= updateYPos)
+			{
+				alien.move("DOWN");
+			} 
+			else if(alien.getY() > updateYPos && alien.getX() > 1)
+			{
+				alien.move("LEFT");
+			}
+			if(alien.getX() == 1 && check)
+			{
+				updateYPos +=15;
+				check = false;
+			}
+			System.out.println("Old Y: " + alien.getY() + " New Y " + updateYPos);
+			//System.out.println("X: " + alien.getX());
 		}
 	}
 
