@@ -14,12 +14,12 @@ public class AlienHorde
 {
 	private List<Alien> aliens;
 	private int updateYPos;
-	private boolean check;
+	private static int score;
 	public AlienHorde(int size)
 	{
 		updateYPos = 30;
-		check = true;
 		aliens = new ArrayList<Alien>();
+		score = 0;
 		for(int i = 0; i < size; i++)
 		{
 			/*
@@ -36,7 +36,7 @@ public class AlienHorde
 				aliens.add(new Alien(x, y));
 			}
 			 */
-			aliens.add(new Alien(1, 1));
+			aliens.add(new Alien(0, 0));
 		}
 	}
 
@@ -73,27 +73,30 @@ public class AlienHorde
 
 	public void moveEmAll()
 	{
-		//ToDo: Fix Right condition as once we add to updateYPos it won't work
+		int checkXPos = 1;
 		for(int i = 0; i < aliens.size(); i++)
 		{
 			Alien alien = aliens.get(i);
-			if(alien.getX() < 750 && alien.getY() == updateYPos - 29)
+			
+			if(alien.getX() < 750 && alien.getX() >= 0 && alien.getY() < updateYPos)
 			{
 				alien.move("RIGHT");
 			}
-			if((alien.getX() >= 750 || alien.getX() <= 1) && alien.getY() <= updateYPos)
+			if((alien.getX() == 750 || alien.getX() == checkXPos) && alien.getY() < updateYPos)
 			{
 				alien.move("DOWN");
-			} 
-			else if(alien.getY() > updateYPos && alien.getX() > 1)
+			}
+			if(alien.getY() >= updateYPos && alien.getX() > checkXPos)
 			{
 				alien.move("LEFT");
 			}
-			if(alien.getX() == 1 && check)
+			/*
+			 * 
+			if(alien.getX() == checkXPos)
 			{
-				updateYPos +=15;
-				check = false;
+				updateYPos += 30;
 			}
+			 */
 			System.out.println("Old Y: " + alien.getY() + " New Y " + updateYPos);
 			//System.out.println("X: " + alien.getX());
 		}
@@ -111,6 +114,7 @@ public class AlienHorde
 				{
 					ammo.remove(j);
 					aliens.remove(i);
+					score++;
 				}
 			}
 		}
