@@ -16,18 +16,17 @@ public class AlienHorde
 	private int updateYPos;
 	private static int score;
 	private int state;
-	private int alienXOffset;
 	public AlienHorde(int size)
 	{
 		updateYPos = 30;
 		aliens = new ArrayList<Alien>();
 		score = 0;
 		state = 1;
-		alienXOffset = 0;
+		int alienXOffset = 0;
 		for(int i = 0; i < size; i++)
 		{
-			aliens.add(0, new Alien(alienXOffset, 0));
-			alienXOffset += 100;
+			aliens.add(0, new Alien(alienXOffset, 0, 1));
+			alienXOffset += 50;
 		}
 	}
 
@@ -81,7 +80,7 @@ public class AlienHorde
 			}
 			else if(state == 2)
 			{
-				if(alien.getY() < updateYPos && alien.getX() > 750)
+				if(alien.getY() < updateYPos)
 				{
 					alien.move("DOWN");
 				}
@@ -143,5 +142,10 @@ public class AlienHorde
 	public String toString()
 	{
 		return "";
+	}
+	
+	public int ReturnScore()
+	{
+		return score;
 	}
 }

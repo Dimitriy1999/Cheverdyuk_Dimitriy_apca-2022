@@ -36,7 +36,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		ship = new Ship(600, 450, 100, 100, 2);
 		shots = new Bullets();
 		alien = new Alien(5, 5, 1);
-		horde = new AlienHorde(2);
+		horde = new AlienHorde(5);
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -65,8 +65,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLUE);
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
-		graphToBack.fillRect(0,0,800,600);
-
+		graphToBack.fillRect(0,0,800,600);		
+		
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
@@ -93,6 +93,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		shots.drawEmAll(graphToBack);
 		shots.moveEmAll();
 		horde.drawEmAll(graphToBack);
+		graphToBack.setColor(Color.WHITE);
+		graphToBack.drawString("Score: " + horde.ReturnScore(), 25, 50 );
 		horde.moveEmAll();		
 		twoDGraph.drawImage(back, null, 0, 0);
 		ship.draw(twoDGraph);
