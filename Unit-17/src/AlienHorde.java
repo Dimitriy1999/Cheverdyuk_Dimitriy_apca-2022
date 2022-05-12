@@ -15,28 +15,19 @@ public class AlienHorde
 	private List<Alien> aliens;
 	private int updateYPos;
 	private static int score;
+	private int state;
+	private int alienXOffset;
 	public AlienHorde(int size)
 	{
 		updateYPos = 30;
 		aliens = new ArrayList<Alien>();
 		score = 0;
+		state = 1;
+		alienXOffset = 0;
 		for(int i = 0; i < size; i++)
 		{
-			/*
-			
-			int x = (int)(Math.random() * 700);
-			int y = (int)(Math.random() * 300);
-			if(CheckAlienPosition() && aliens.size() > 0)
-			{
-				x = (int)(Math.random() * 700);
-				aliens.add(new Alien(x, y));
-			}
-			else
-			{
-				aliens.add(new Alien(x, y));
-			}
-			 */
-			aliens.add(new Alien(0, 0));
+			aliens.add(0, new Alien(alienXOffset, 0));
+			alienXOffset += 100;
 		}
 	}
 
@@ -73,32 +64,56 @@ public class AlienHorde
 
 	public void moveEmAll()
 	{
-		int checkXPos = 1;
 		for(int i = 0; i < aliens.size(); i++)
 		{
 			Alien alien = aliens.get(i);
 			
-			if(alien.getX() < 750 && alien.getX() >= 0 && alien.getY() < updateYPos)
+			if(state == 1)
 			{
-				alien.move("RIGHT");
+				if(alien.getX() < 750)
+				{
+					alien.move("RIGHT");
+				}
+				else
+				{
+					state = 2;
+				}
 			}
-			if((alien.getX() == 750 || alien.getX() == checkXPos) && alien.getY() < updateYPos)
+			else if(state == 2)
 			{
-				alien.move("DOWN");
+				if(alien.getY() < updateYPos && alien.getX() > 750)
+				{
+					alien.move("DOWN");
+				}
+				else
+				{
+					state = 3;
+					updateYPos += 30;
+				}
 			}
-			if(alien.getY() >= updateYPos && alien.getX() > checkXPos)
+			else if(state == 3)
 			{
-				alien.move("LEFT");
+				if(alien.getX() > 0)
+				{
+					alien.move("LEFT");
+				}
+				else
+				{
+					state = 4;
+				}
 			}
-			/*
-			 * 
-			if(alien.getX() == checkXPos)
+			else if(state == 4)
 			{
-				updateYPos += 30;
+				if(alien.getY() < updateYPos)
+				{
+					alien.move("DOWN");
+				}
+				else
+				{
+					state = 1;
+					updateYPos += 30;
+				}
 			}
-			 */
-			System.out.println("Old Y: " + alien.getY() + " New Y " + updateYPos);
-			//System.out.println("X: " + alien.getX());
 		}
 	}
 
