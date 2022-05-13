@@ -13,6 +13,8 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private int alienState;
+	private int updateYPos;
 
 	public Alien()
 	{
@@ -52,6 +54,27 @@ public class Alien extends MovingThing
 	{
 	   return speed;
 	}
+	
+	public int GetState()
+	{
+		return alienState;
+	}
+	
+	public void SetState(int state)
+	{
+		alienState = state;
+	}
+	
+	public int GetUpdatedYPos()
+	{
+		return updateYPos;
+	}
+	
+	public void SetUpdatedYPos(int pos)
+	{
+		updateYPos += pos;
+	}
+
 
    public void move(String direction)
 	{

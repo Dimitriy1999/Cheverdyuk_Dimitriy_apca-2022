@@ -13,45 +13,27 @@ import java.util.List;
 public class AlienHorde
 {
 	private List<Alien> aliens;
-	private int updateYPos;
 	private static int score;
-	private int state;
+	private boolean shouldGo;
 	public AlienHorde(int size)
 	{
-		updateYPos = 30;
 		aliens = new ArrayList<Alien>();
 		score = 0;
-		state = 1;
+		shouldGo = true;
 		int alienXOffset = 0;
+		int alienYOffset = 0;
 		for(int i = 0; i < size; i++)
 		{
-			aliens.add(0, new Alien(alienXOffset, 0, 1));
-			alienXOffset += 50;
+			if(i > 0 && i % 15 == 0)
+			{
+				alienYOffset += 30;
+				alienXOffset = 0;
+			}
+			aliens.add(new Alien(alienXOffset, alienYOffset, 1));
+			alienXOffset += 45;
 		}
 	}
 
-	public boolean CheckAlienPosition() 
-	{
-		for(int i = 0; i < aliens.size(); i++)
-		{
-			for(int j = 0; j < aliens.size(); j++)
-			{
-				if(aliens.get(j).getX() <= aliens.get(i).getX() + aliens.get(i).getWidth() + Math.abs(aliens.get(j).getSpeed())
-				&& (aliens.get(j).getY() >= aliens.get(i).getY() && aliens.get(j).getY() <= aliens.get(i).getY() + aliens.get(i).getHeight()) 
-				&& !(aliens.get(j).getX() < aliens.get(i).getX()))
-				{
-					System.out.println("Alien's are in contact, Swapping Position");
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	public void add(Alien al)
-	{
-		aliens.add(al);
-	}
 
 	public void drawEmAll( Graphics window )
 	{
@@ -61,36 +43,54 @@ public class AlienHorde
 		}
 	}
 
+	public void SetOriginalState()
+	{
+		if(shouldGo)
+		{
+			for(int i = 0 ; i < aliens.size(); i++)
+			{
+				Alien alien = aliens.get(i);
+				alien.SetState(1);
+				alien.SetUpdatedYPos(30);
+			}
+			shouldGo = false;
+		}
+	}
+	
 	public void moveEmAll()
 	{
+		int screenWidth = 750;
+		int updateYPosAmount = 45;
+		SetOriginalState();
+		
 		for(int i = 0; i < aliens.size(); i++)
 		{
 			Alien alien = aliens.get(i);
 			
-			if(state == 1)
+			if(alien.GetState() == 1)
 			{
-				if(alien.getX() < 750)
+				if(alien.getX() < screenWidth)
 				{
 					alien.move("RIGHT");
 				}
 				else
 				{
-					state = 2;
+					alien.SetState(2);
 				}
 			}
-			else if(state == 2)
+			else if(alien.GetState() == 2)
 			{
-				if(alien.getY() < updateYPos)
+				if(alien.getY() < alien.GetUpdatedYPos())
 				{
 					alien.move("DOWN");
 				}
 				else
 				{
-					state = 3;
-					updateYPos += 30;
+					alien.SetState(3);
+					alien.SetUpdatedYPos(updateYPosAmount);
 				}
 			}
-			else if(state == 3)
+			else if(alien.GetState() == 3)
 			{
 				if(alien.getX() > 0)
 				{
@@ -98,19 +98,19 @@ public class AlienHorde
 				}
 				else
 				{
-					state = 4;
+					alien.SetState(4);
 				}
 			}
-			else if(state == 4)
+			else if(alien.GetState() == 4)
 			{
-				if(alien.getY() < updateYPos)
+				if(alien.getY() < alien.GetUpdatedYPos())
 				{
 					alien.move("DOWN");
 				}
 				else
 				{
-					state = 1;
-					updateYPos += 30;
+					alien.SetState(1);
+					alien.SetUpdatedYPos(updateYPosAmount);
 				}
 			}
 		}
@@ -120,11 +120,12 @@ public class AlienHorde
 	{
 		for(int i = 0; i < aliens.size(); i++)
 		{
+			Alien alien = aliens.get(i);
 			for(int j = 0; j < ammo.size(); j++)
 			{
-				if(ammo.get(j).getX() <= aliens.get(i).getX() + aliens.get(i).getWidth() + Math.abs(ammo.get(j).getSpeed()) 
-				&& (ammo.get(j).getY() >= aliens.get(i).getY() && ammo.get(j).getY() <= aliens.get(i).getY() + aliens.get(i).getHeight())
-				&& !(ammo.get(j).getX() < aliens.get(i).getX()))
+				if(ammo.get(j).getX() <= alien.getX() + alien.getWidth() + Math.abs(ammo.get(j).getSpeed()) 
+				&& (ammo.get(j).getY() >= alien.getY() && ammo.get(j).getY() <= alien.getY() + alien.getHeight())
+				&& !(ammo.get(j).getX() < alien.getX()))
 				{
 					ammo.remove(j);
 					aliens.remove(i);

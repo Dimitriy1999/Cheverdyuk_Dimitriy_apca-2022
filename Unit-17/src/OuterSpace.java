@@ -18,12 +18,10 @@ import javax.swing.Timer;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private Alien alien;
     private AlienHorde horde;
 	private Bullets shots;
 	private boolean[] keys;
 	private BufferedImage back;
-	private Timer alienTimer;
 
 	public OuterSpace()
 	{
@@ -35,8 +33,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 						//X   Y   W   H   S
 		ship = new Ship(600, 450, 100, 100, 2);
 		shots = new Bullets();
-		alien = new Alien(5, 5, 1);
-		horde = new AlienHorde(5);
+		horde = new AlienHorde(10);
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -62,47 +59,75 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
 
-		graphToBack.setColor(Color.BLUE);
-		graphToBack.drawString("StarFighter ", 25, 50 );
-		graphToBack.setColor(Color.BLACK);
-		graphToBack.fillRect(0,0,800,600);		
-		
-		if(keys[0] == true)
-		{
-			ship.move("LEFT");
-		}
-		if(keys[1] == true)
-		{
-			ship.move("RIGHT");
-		}
-		if(keys[2] == true)
-		{
-			ship.move("UP");
-		}
-		if(keys[3] == true)
-		{
-			ship.move("DOWN");
-		}
-		if(keys[4] == true)
-		{
-			shots.add(new Ammo(ship.getX() + ship.getWidth() / 2 - 7, ship.getY(), 3));
-			keys[4] = false;
-		}
-		
-		CollisionCheck();
-		shots.drawEmAll(graphToBack);
-		shots.moveEmAll();
-		horde.drawEmAll(graphToBack);
-		graphToBack.setColor(Color.WHITE);
-		graphToBack.drawString("Score: " + horde.ReturnScore(), 25, 50 );
-		horde.moveEmAll();		
-		twoDGraph.drawImage(back, null, 0, 0);
-		ship.draw(twoDGraph);
+			graphToBack.setColor(Color.BLUE);
+			graphToBack.drawString("StarFighter ", 25, 50 );
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(0,0,800,600);		
+			
+			if(keys[0] == true)
+			{
+				ship.move("LEFT");
+			}
+			if(keys[1] == true)
+			{
+				ship.move("RIGHT");
+			}
+			if(keys[2] == true)
+			{
+				ship.move("UP");
+			}
+			if(keys[3] == true)
+			{
+				ship.move("DOWN");
+			}
+			if(keys[4] == true)
+			{
+				shots.add(new Ammo(ship.getX() + ship.getWidth() / 2 - 7, ship.getY(), 3));
+				keys[4] = false;
+			}
+				CollisionCheck();
+				shots.drawEmAll(graphToBack);
+				shots.moveEmAll();
+				horde.drawEmAll(graphToBack);
+				graphToBack.setColor(Color.WHITE);
+				graphToBack.drawString("Score: " + horde.ReturnScore(), 700, 50 );
+				if(AlienCollisionWithShip())
+				{
+					graphToBack.setColor(Color.WHITE);
+					graphToBack.drawString("GAME OVER! YOU LOST, FNAL SCORE COUNT: " + horde.ReturnScore(), 250, 300 );
+					ship.setSpeed(0);
+					for(int i = 0; i < horde.getList().size(); i++)
+					{
+						Alien alien = horde.getList().get(i);
+						alien.setSpeed(0);
+					}
+				}
+				horde.moveEmAll();		
+				twoDGraph.drawImage(back, null, 0, 0);
+				ship.draw(twoDGraph);
+				
 	}
 
+	
+	
 	public void CollisionCheck()
 	{
 		horde.removeDeadOnes(shots.getList());
+	}
+
+	public boolean AlienCollisionWithShip()
+	{
+		for(int i = 0; i < horde.getList().size(); i++)
+		{
+			Alien alien = horde.getList().get(i);
+			if(ship.getX() <= alien.getX() + alien.getWidth() + Math.abs(ship.getSpeed()) 
+			&& (ship.getY() >= alien.getY() && ship.getY() <= alien.getY() + alien.getHeight())
+			&& !(ship.getX() < alien.getX()))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void keyPressed(KeyEvent e)
