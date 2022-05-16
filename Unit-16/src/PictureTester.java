@@ -58,6 +58,13 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testEdgeDetection2()
+  {
+    Picture swan = new Picture("swan.jpg");
+    swan.edgeDetection2(30);
+    swan.explore();
+  }
+  
   //not sure what it's really supposed to look like so i hope it's correct
   public static void testMirrorVerticalRightToLeft()
   {
@@ -95,6 +102,7 @@ public class PictureTester
   public static void testNegate()
   {
 	  Picture picture = new Picture("flower1.jpg");
+	  picture.explore();
 	  picture.negate();
 	  picture.explore();
   }
@@ -148,6 +156,20 @@ public class PictureTester
 	  beach.copyTwo(arch, 100, 479, 1, 700, 0, 0);
 	  beach.explore();
   }
+  
+  public static void testKeepOnlyRed()
+  {
+	  Picture picture = new Picture("beach.jpg");
+	  picture.KeepOnlyRed();
+	  picture.explore();
+  }
+  
+  public static void testKeepOnlyGreen()
+  {
+	  Picture picture = new Picture("beach.jpg");
+	  picture.KeepOnlyGreen();
+	  picture.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -158,37 +180,25 @@ public class PictureTester
 	  
 	  //all code below, has been tested and it works
 	  /*
+	    testNegate();
+	    testMirrorTemple();
+	    testEdgeDetection();
         testZeroBlue(); 
 	    TestKeepOnlyBlue();
-	    testNegate();
 	    testGrayScale();
 	    testFixUnderwater();
 	  	testMirrorVerticalRightToLeft(); 
 	 	testMirrorHorizontal();
 	  	testMirrorHorizontalBottomToTop();
 	  	testMirrorBottomLeftToTopRight();
-	  	testMirrorTemple();
 	  	TestMirrorArm();
 		TestMirrorGull();
 	 	TestCopyTwo();
-	  testCollage2();
+	 	testCollage2();
+	  	testEdgeDetection();
+	  	testKeepOnlyRed();
+		testKeepOnlyGreen();
+	  	testEdgeDetection2();
 	   */
-	  testEdgeDetection();
-	  //testKeepOnlyRed();
-    //testKeepOnlyGreen();
-    //testMirrorVertical();
-    //testMirrorArms();
-    //testMirrorGull();
-    //testMirrorDiagonal();
-    //testCollage();
-    //testCopy();
-    //testEdgeDetection();
-    //testEdgeDetection2();
-    //testChromakey();
-    //testEncodeAndDecode();
-    //testGetCountRedOverValue(250);
-    //testSetRedToHalfValueInTopHalf();
-    //testClearBlueOverValue(200);
-    //testGetAverageForColumn(0);
   }
 }

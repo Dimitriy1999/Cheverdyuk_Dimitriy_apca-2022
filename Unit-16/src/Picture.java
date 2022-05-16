@@ -280,7 +280,7 @@ public class Picture extends SimplePicture
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
-  public void edgeDetection(int edgeDist)
+  public void edgeDetection2(int edgeDist)
   {
     Pixel leftPixel = null;
     Pixel rightPixel = null;
@@ -294,7 +294,7 @@ public class Picture extends SimplePicture
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
-        double checkColorDistanceBelow = pixels[row][col].colorDistance(pixels[row + 1][col].getColor()); //My "Algorithim" to check color below
+        double checkColorDistanceBelow = pixels[row][col].colorDistance(pixels[row + 1][col].getColor());
         if (leftPixel.colorDistance(rightColor) > edgeDist ||  checkColorDistanceBelow > edgeDist)
         {
         	leftPixel.setColor(Color.BLACK);
@@ -303,6 +303,28 @@ public class Picture extends SimplePicture
         {
         	leftPixel.setColor(Color.WHITE);
         }
+      }
+    }
+  }
+  public void edgeDetection(int edgeDist)
+  {
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+    Color rightColor = null;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; 
+           col < pixels[0].length-1; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][col+1];
+        rightColor = rightPixel.getColor();
+        if (leftPixel.colorDistance(rightColor) > 
+            edgeDist)
+          leftPixel.setColor(Color.BLACK);
+        else
+          leftPixel.setColor(Color.WHITE);
       }
     }
   }
@@ -316,6 +338,32 @@ public class Picture extends SimplePicture
 		  {
 			  pixelObj.setRed(0);
 			  pixelObj.setGreen(0);
+		  }
+	  }
+  }
+  
+  public void KeepOnlyRed()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+		  for (Pixel pixelObj : rowArray)
+		  {
+			  pixelObj.setBlue(0);
+			  pixelObj.setGreen(0);
+		  }
+	  }
+  }
+  
+  public void KeepOnlyGreen()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+		  for (Pixel pixelObj : rowArray)
+		  {
+			  pixelObj.setRed(0);
+			  pixelObj.setBlue(0);
 		  }
 	  }
   }

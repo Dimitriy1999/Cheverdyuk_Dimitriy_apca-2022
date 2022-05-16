@@ -15,6 +15,7 @@ public class Alien extends MovingThing
 	private Image image;
 	private int alienState;
 	private int updateYPos;
+	private static int row;
 
 	public Alien()
 	{
@@ -74,8 +75,7 @@ public class Alien extends MovingThing
 	{
 		updateYPos += pos;
 	}
-
-
+	
    public void move(String direction)
 	{
 	   switch(direction)

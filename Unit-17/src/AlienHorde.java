@@ -15,6 +15,7 @@ public class AlienHorde
 	private List<Alien> aliens;
 	private static int score;
 	private boolean shouldGo;
+	private int amountPerRow = 10;
 	public AlienHorde(int size)
 	{
 		aliens = new ArrayList<Alien>();
@@ -24,12 +25,8 @@ public class AlienHorde
 		int alienYOffset = 0;
 		for(int i = 0; i < size; i++)
 		{
-			if(i > 0 && i % 15 == 0)
-			{
-				alienYOffset += 30;
-				alienXOffset = 0;
-			}
-			aliens.add(new Alien(alienXOffset, alienYOffset, 1));
+			
+			aliens.add(new Alien(alienXOffset + (i % 10) * amountPerRow, alienYOffset);
 			alienXOffset += 45;
 		}
 	}
