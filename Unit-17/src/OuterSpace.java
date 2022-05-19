@@ -33,7 +33,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 						//X   Y   W   H   S
 		ship = new Ship(600, 450, 50, 50, 2);
 		shots = new Bullets();
-		horde = new AlienHorde(15);
+		horde = new AlienHorde(20);
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -93,13 +93,17 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				graphToBack.drawString("Score: " + horde.ReturnScore(), 700, 50 );
 				if(AlienCollisionWithShip())
 				{
-					graphToBack.drawString("GAME OVER! YOU LOST, FNAL SCORE COUNT: " + horde.ReturnScore(), 250, 300 );
+					graphToBack.drawString("GAME OVER! YOU LOST, FINAL SCORE COUNT: " + horde.ReturnScore(), 250, 300 );
 					ship.setSpeed(0);
 					for(int i = 0; i < horde.getList().size(); i++)
 					{
 						Alien alien = horde.getList().get(i);
 						alien.setSpeed(0);
 					}
+				}
+				if(CheckWin())
+				{
+					graphToBack.drawString("YOU WIN! FINAL SCORE COUNT " + horde.ReturnScore(), 300, 300 );
 				}
 				horde.moveEmAll();		
 				twoDGraph.drawImage(back, null, 0, 0);
@@ -108,6 +112,14 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	}
 
 	
+	public boolean CheckWin()
+	{
+		if(horde.getList().size() == 0)
+		{
+			return true;
+		}
+		return false;
+	}
 	
 	public void CollisionCheck()
 	{
@@ -119,7 +131,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		for(int i = 0; i < horde.getList().size(); i++)
 		{
 			Alien alien = horde.getList().get(i);
-			if(ship.getX() <= alien.getX() + alien.getWidth() + Math.abs(alien.getSpeed()) 
+			if(ship.getX() <= alien.getX() + alien.getWidth() 
 			&& (ship.getY() >= alien.getY() && ship.getY() <= alien.getY() + alien.getHeight())
 			&& !(ship.getX() <= alien.getX()))
 			{
