@@ -22,10 +22,13 @@ public class AlienHorde
 		score = 0;
 		shouldGo = true;
 		int alienXOffset = 0;
-		int alienYOffset = 2;
+		int alienYOffset = 0;
 		for(int i = 0; i < size; i++)
 		{
-			
+			if(i % 10 == 0)
+			{
+				alienYOffset += 30;
+			}
 			aliens.add(new Alien(alienXOffset + (i % 10) * amountPerRow, alienYOffset + (i % 10) / amountPerRow));
 		}
 	}
@@ -41,13 +44,14 @@ public class AlienHorde
 
 	public void SetOriginalState()
 	{
+		int updateYPosAmount = 80;
 		if(shouldGo)
 		{
 			for(int i = 0 ; i < aliens.size(); i++)
 			{
 				Alien alien = aliens.get(i);
 				alien.SetState(1);
-				alien.SetUpdatedYPos(30);
+				alien.SetUpdatedYPos(alien.getY() + updateYPosAmount);
 			}
 			shouldGo = false;
 		}
@@ -55,8 +59,8 @@ public class AlienHorde
 	
 	public void moveEmAll()
 	{
-		int screenWidth = 750;
-		int updateYPosAmount = 45;
+		int screenWidth = 800;
+		int updateYPosAmount = 80;
 		SetOriginalState();
 		
 		for(int i = 0; i < aliens.size(); i++)
@@ -88,7 +92,7 @@ public class AlienHorde
 			}
 			else if(alien.GetState() == 3)
 			{
-				if(alien.getX() > 0)
+				if(alien.getX() > screenWidth - 850)
 				{
 					alien.move("LEFT");
 				}

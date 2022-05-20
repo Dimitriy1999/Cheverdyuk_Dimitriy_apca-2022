@@ -170,6 +170,14 @@ public class PictureTester
 	  picture.KeepOnlyGreen();
 	  picture.explore();
   }
+  
+  public static void encode()
+  {
+	  Picture picture = new Picture("msg.jpg");
+	  picture.encode(picture);
+	  picture.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -177,7 +185,7 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-	  
+	  encode();
 	  //all code below, has been tested and it works
 	  /*
 	    testNegate();

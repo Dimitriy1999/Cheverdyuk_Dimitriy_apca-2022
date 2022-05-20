@@ -478,15 +478,49 @@ public class Picture extends SimplePicture
 	    }   
   }
   
+  /*
+   *  public void mirrorArm()
+  {
+    int mirrorPoint = 193;
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+
+    // Left arm
+    for (int row = 158; row < mirrorPoint; row++)
+    {
+      for (int col = 103; col < 170; col++)
+      {
+        topPixel = pixels[row][col];      
+        bottomPixel = pixels[mirrorPoint - row + mirrorPoint][col];
+        bottomPixel.setColor(topPixel.getColor());
+      }
+    }
+  }
+   */
+  
+  public void encode(Picture picture)
+  {
+	  Pixel[][] messagePixels = picture.getPixels2D();
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel currPixel = null;
+	  Pixel messagePixel = null;
+	  for (int row = 0; row < this.getHeight(); row++)
+	  {
+		  for (int col = 0; col < 400; col++)
+		  {
+			  currPixel = currPixels[row][col];
+			  if(currPixel.getRed() < 25 && currPixel.getBlue() < 25 && currPixel.getGreen() < 25)
+			  {
+				  messagePixel = messagePixels[row][col + 50];
+				  messagePixel.setRed(150);
+			  }
+		  }
+	  }
+  }
+  
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
-  public static void main(String[] args) 
-  {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
-  }
   
 } // this } is the end of class Picture, put all new methods before this

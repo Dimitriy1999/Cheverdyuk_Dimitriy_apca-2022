@@ -33,7 +33,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 						//X   Y   W   H   S
 		ship = new Ship(600, 450, 50, 50, 2);
 		shots = new Bullets();
-		horde = new AlienHorde(20);
+		horde = new AlienHorde(30);
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -132,8 +132,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			Alien alien = horde.getList().get(i);
 			if(ship.getX() <= alien.getX() + alien.getWidth() 
-			&& (ship.getY() >= alien.getY() && ship.getY() <= alien.getY() + alien.getHeight())
-			&& !(ship.getX() <= alien.getX()))
+			&& (ship.getY() + ship.getHeight() >= alien.getY() && ship.getY() <= alien.getY() + alien.getHeight())
+			&& !(ship.getX() <= alien.getX()) || alien.getY() > 525)
 			{
 				return true;
 			}
