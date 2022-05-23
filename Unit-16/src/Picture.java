@@ -501,22 +501,41 @@ public class Picture extends SimplePicture
   
   public void encode(Picture picture)
   {
-	  Pixel[][] messagePixels = picture.getPixels2D();
 	  Pixel[][] currPixels = this.getPixels2D();
 	  Pixel currPixel = null;
-	  Pixel messagePixel = null;
+	  int iterationAmount = 3;
+	  int centerX = this.getWidth() / 2;
+	  int centerY = this.getHeight() / 2;
+	  middlePoint(centerX, centerY);
 	  for (int row = 0; row < this.getHeight(); row++)
 	  {
-		  for (int col = 0; col < 400; col++)
+		  for (int col = 0; col < this.getWidth(); col++)
 		  {
-			  currPixel = currPixels[row][col];
-			  if(currPixel.getRed() < 25 && currPixel.getBlue() < 25 && currPixel.getGreen() < 25)
-			  {
-				  messagePixel = messagePixels[row][col + 50];
-				  messagePixel.setRed(150);
-			  }
+			  for(int i = 1; i <= iterationAmount; i++)
+			  	{
+					for(int j = -i; j <= i; j++)
+					{
+						centerX += j;
+						centerY -= i;
+						if((centerY <= this.getHeight() && centerY >= 0) && (centerX >= 0 && centerX <= this.getWidth()))
+						{
+							currPixel = currPixels[centerY][centerX];
+							currPixel.setColor(Color.black);
+						}
+					}
+				}
 		  }
 	  }
+  }
+  
+  
+  public void middlePoint(int x, int y)
+  {
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel currPixel = null;
+	  currPixel = currPixels[y][x];
+	  currPixel.setColor(Color.black);
+	  
   }
   
   /* Main method for testing - each class in Java can have a main 
