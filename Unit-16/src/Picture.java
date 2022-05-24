@@ -43,7 +43,7 @@ public class Picture extends SimplePicture
    * @param height the height of the desired picture
    * @param width the width of the desired picture
    */
-  public Picture(int height, int width)
+  public Picture(int width, int height)
   {
     // let the parent class handle this width and height
     super(width,height);
@@ -499,44 +499,78 @@ public class Picture extends SimplePicture
   }
    */
   
-  public void encode(Picture picture)
+  public void encode(Picture result)
   {
+	  process(result, true);
+  }
+  public void decode(Picture result)
+  {
+	  process(result, false);
+  }
+  
+  public void process(Picture result, boolean shouldEncrypt)
+  {
+	  Point point = new Point(0, 0);
 	  Pixel[][] currPixels = this.getPixels2D();
-	  Pixel currPixel = null;
-	  int iterationAmount = 3;
+	  Pixel[][] secPixels = result.getPixels2D();
+ 	  int iterationAmount = Math.max(getWidth() / 2, getHeight() / 2);
 	  int centerX = this.getWidth() / 2;
 	  int centerY = this.getHeight() / 2;
-	  middlePoint(centerX, centerY);
-	  for (int row = 0; row < this.getHeight(); row++)
+	  processImage(currPixels, secPixels, point, centerX, centerY, shouldEncrypt);
+	  for(int i = 1; i <= iterationAmount; i++)
 	  {
-		  for (int col = 0; col < this.getWidth(); col++)
+		  for(int j = -i; j <= i; j++)
 		  {
-			  for(int i = 1; i <= iterationAmount; i++)
-			  	{
-					for(int j = -i; j <= i; j++)
-					{
-						centerX += j;
-						centerY -= i;
-						if((centerY <= this.getHeight() && centerY >= 0) && (centerX >= 0 && centerX <= this.getWidth()))
-						{
-							currPixel = currPixels[centerY][centerX];
-							currPixel.setColor(Color.black);
-						}
-					}
-				}
+			int x = centerX + j;
+			int y = centerY - i;
+			 processImage(currPixels, secPixels, point, x, y, shouldEncrypt);
+		  }
+		  for(int j = -i + 1; j <= i; j++)
+		  {
+			int x = centerX + i;
+			int y = centerY + j;
+			 processImage(currPixels, secPixels, point, x, y, shouldEncrypt);
+		  }
+		  for(int j = i - 1; j >= -i; j--)
+		  {
+			int x = centerX + j;
+			int y = centerY + i;
+			 processImage(currPixels, secPixels, point, x, y, shouldEncrypt);
+		  }
+		  for(int j = i - 1; j > -i; j--)
+		  {
+			int x = centerX - i;
+			int y = centerY + j;
+			 processImage(currPixels, secPixels, point, x, y, shouldEncrypt);
 		  }
 	  }
   }
   
   
-  public void middlePoint(int x, int y)
+  public void processImage(Pixel[][] pixel1, Pixel[][] pixel2, Point point, int x, int y, boolean shouldEncrypt)
   {
-	  Pixel[][] currPixels = this.getPixels2D();
-	  Pixel currPixel = null;
-	  currPixel = currPixels[y][x];
-	  currPixel.setColor(Color.black);
+	  if(y < this.getHeight() && y >= 0 && x >= 0 && x < this.getWidth())
+	  {
+		  if(shouldEncrypt)
+		  {
+			  Color pixel = pixel1[point.y][point.x].getColor();
+			  pixel2[y][x].setColor(pixel);
+		  }
+		  else
+		  {
+			  Color pixel = pixel1[y][x].getColor();
+			  pixel2[point.y][point.x].setColor(pixel);
+		  }
+		  point.x += 1;
+		  if (point.x >= this.getWidth())
+		  {
+			  point.x = 0;
+			  point.y += 1;
+		  }
+	  }
 	  
   }
+  
   
   /* Main method for testing - each class in Java can have a main 
    * method 

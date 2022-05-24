@@ -171,12 +171,17 @@ public class PictureTester
 	  picture.explore();
   }
   
-  public static void encode()
+  public static void encodeAndDecode()
   {
 	  Picture picture = new Picture("msg.jpg");
-	  picture.encode(picture);
-	  picture.explore();
+	  Picture picture2 = new Picture(picture.getWidth(), picture.getHeight());
+	  Picture picture3 = new Picture(picture.getWidth(), picture.getHeight());
+	  picture.encode(picture2);
+	  picture2.explore();
+	  picture2.decode(picture3);
+	  picture3.explore();
   }
+  
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -185,7 +190,7 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-	  encode();
+	  encodeAndDecode();
 	  //all code below, has been tested and it works
 	  /*
 	    testNegate();
