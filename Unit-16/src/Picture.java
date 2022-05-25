@@ -571,7 +571,56 @@ public class Picture extends SimplePicture
 	  
   }
   
+  public void encodeImage(Picture image)
+  {
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel[][] msgPixels = image.getPixels2D();
+	  Pixel pixel = null;
+	  Pixel msgPixel = null;
+	  int firstMod = 5;
+	  int secondMod = 8;
+	  for(int r = 0; r < this.getHeight(); r++)
+	  {
+		  for(int c = 0; c < this.getWidth(); c++)
+		  {
+			  pixel = currPixels[r][c];
+			  msgPixel = msgPixels[r][c];
+			  if(pixel.getGreen() % firstMod != 0 || pixel.getGreen() % secondMod != 0)
+			  {
+				  pixel.setGreen(pixel.getGreen() - 1);
+			  }
+			  if((msgPixel.getRed() < 15 && msgPixel.getGreen() < 15 && msgPixel.getBlue() < 15)
+			  && (msgPixel.getGreen() % firstMod == 0 || msgPixel.getGreen() % secondMod == 0))
+			  {
+				  pixel.setGreen(pixel.getGreen() + 1);
+			  }
+		  }
+	  }
+  }
   
+  public void decode() 
+  {
+	  int firstMod = 5;
+	  int secondMod = 8;
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Picture image = new Picture(this.getWidth(), this.getHeight());
+	  Pixel[][] msgPixels = image.getPixels2D();
+	  Pixel pixel = null;
+	  Pixel msgPixel = null;
+	  for(int r = 0; r < this.getHeight(); r++)
+	  {
+		  for(int c = 0; c < this.getWidth(); c++)
+		  {
+			  pixel = currPixels[r][c];
+			  msgPixel = msgPixels[r][c];
+			  if(pixel.getGreen() % firstMod != 0 || pixel.getGreen() % secondMod != 0)
+			  {
+				  msgPixel.setColor(Color.black);
+			  }
+		  }
+	  }
+  }
+ 
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
