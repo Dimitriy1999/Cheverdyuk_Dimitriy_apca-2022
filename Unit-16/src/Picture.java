@@ -577,48 +577,85 @@ public class Picture extends SimplePicture
 	  Pixel[][] msgPixels = image.getPixels2D();
 	  Pixel pixel = null;
 	  Pixel msgPixel = null;
-	  int firstMod = 5;
-	  int secondMod = 8;
 	  for(int r = 0; r < this.getHeight(); r++)
 	  {
 		  for(int c = 0; c < this.getWidth(); c++)
 		  {
 			  pixel = currPixels[r][c];
 			  msgPixel = msgPixels[r][c];
-			  if(pixel.getGreen() % firstMod != 0 || pixel.getGreen() % secondMod != 0)
+			  int color = 0;
+			  switch((r + c) % 3)
 			  {
-				  pixel.setGreen(pixel.getGreen() - 1);
+			  case 0:
+				  color = pixel.getRed();
+				  break;
+			  case 1:
+				  color = pixel.getGreen();
+				  break;
+			  case 2:
+				  color = pixel.getBlue();
+				  break;
 			  }
-			  if((msgPixel.getRed() < 15 && msgPixel.getGreen() < 15 && msgPixel.getBlue() < 15)
-			  && (msgPixel.getGreen() % firstMod == 0 || msgPixel.getGreen() % secondMod == 0))
+			  System.out.println(Integer.toBinaryString(color));
+			  if(msgPixel.getRed() < 40 && msgPixel.getGreen() < 40 && msgPixel.getBlue() < 40)
 			  {
-				  pixel.setGreen(pixel.getGreen() + 1);
+				color = color & ~1; 
 			  }
+			  else
+			  {
+				  color = color | 1;
+			  }
+			  switch((r + c) % 3)
+			  {
+			  case 0:
+				 pixel.setRed(color);
+				  break;
+			  case 1:
+				  pixel.setGreen(color);
+				  break;
+			  case 2:
+				  pixel.setBlue(color);
+				  break;
+			  }
+			  
 		  }
 	  }
   }
   
-  public void decode() 
+  public Picture decode() 
   {
-	  int firstMod = 5;
-	  int secondMod = 8;
 	  Pixel[][] currPixels = this.getPixels2D();
 	  Picture image = new Picture(this.getWidth(), this.getHeight());
-	  Pixel[][] msgPixels = image.getPixels2D();
 	  Pixel pixel = null;
-	  Pixel msgPixel = null;
 	  for(int r = 0; r < this.getHeight(); r++)
 	  {
 		  for(int c = 0; c < this.getWidth(); c++)
 		  {
 			  pixel = currPixels[r][c];
-			  msgPixel = msgPixels[r][c];
-			  if(pixel.getGreen() % firstMod != 0 || pixel.getGreen() % secondMod != 0)
+			  int color = 0;
+			  switch((r + c) % 3)
 			  {
-				  msgPixel.setColor(Color.black);
+			  case 0:
+				  color = pixel.getRed();
+				  break;
+			  case 1:
+				  color = pixel.getGreen();
+				  break;
+			  case 2:
+				  color = pixel.getBlue();
+				  break;
+			  }
+			  if((color & 1) == 0)
+			  {
+				  pixel.setColor(Color.black);
+			  }
+			  else
+			  {
+				  pixel.setColor(Color.white);
 			  }
 		  }
 	  }
+	  return image;
   }
  
   /* Main method for testing - each class in Java can have a main 
