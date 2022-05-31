@@ -175,6 +175,7 @@ public class PictureTester
   {
 	  Picture picture = new Picture("beach.jpg");
 	  Picture msg = new Picture("msg.jpg");
+	  //Picture msg = new Picture("apple_icon.jpg");
 	  picture.encodeImage(msg);
 	  picture.explore();
 	  picture.decode();

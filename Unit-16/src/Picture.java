@@ -596,7 +596,6 @@ public class Picture extends SimplePicture
 				  color = pixel.getBlue();
 				  break;
 			  }
-			  System.out.println(Integer.toBinaryString(color));
 			  if(msgPixel.getRed() < 40 && msgPixel.getGreen() < 40 && msgPixel.getBlue() < 40)
 			  {
 				color = color & ~1; 
