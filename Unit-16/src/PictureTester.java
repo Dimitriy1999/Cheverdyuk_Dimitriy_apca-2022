@@ -174,8 +174,8 @@ public class PictureTester
   public static void encodeAndDecode()
   {
 	  Picture picture = new Picture("beach.jpg");
-	  Picture msg = new Picture("msg.jpg");
-	  //Picture msg = new Picture("apple_icon.jpg");
+	  Picture msg = new Picture("apple_icon.jpg");
+	  picture.explore();
 	  picture.encodeImage(msg);
 	  picture.explore();
 	  picture.decode();

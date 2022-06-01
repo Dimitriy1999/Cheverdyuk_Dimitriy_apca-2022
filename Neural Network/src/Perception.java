@@ -1,11 +1,11 @@
 
-public class Perceptron 
+public class Perception 
 {
 	private int threshold;
 	private double learningRate;
 	private double bias;
 	private double [] weight;
-	public Perceptron(int numberOfInputs, int threshold, double learningRate)
+	public Perception(int numberOfInputs, int threshold, double learningRate)
 	{
 		this.threshold = threshold;
 		this.learningRate = learningRate;
@@ -33,9 +33,10 @@ public class Perceptron
 
 	    double scalarproduct = 0.0;
 
-	    if (q.length == p.length){
-
-	        for(int i = 0; i < q.length; i++){
+	    if (q.length == p.length)
+	    {
+	        for(int i = 0; i < q.length; i++)
+	        {
 	            scalarproduct = scalarproduct + q[i] * p[i];
 	        }
 	    }
@@ -84,7 +85,12 @@ public class Perceptron
 	
 	public static void main(String[] args)
 	{
+		// And gate
 		double [] labels = new double[]{1,0,0,0};
+		// Or gate
+		//double [] labels = new double[]{1,1,1,0};
+		//nand gate
+		//double [] labels = new double[]{0,1,1,1};
 		double [][] matrix = new double[][] 
 				{
 					new double[] {1,1},
@@ -92,13 +98,13 @@ public class Perceptron
 					new double[] {0,1},
 					new double[] {0,0}
 				};
-		Perceptron perceptron = new Perceptron(2, 10, 1);
+		Perception perceptron = new Perception(2, 10, 1);
 		perceptron.train(matrix, labels);
 		int a = 1;
 		int b = 0;
 		double [] inputs = new double[] {a,b};
 		System.out.println("---------" + "Input" + "----------" + arrayToString(inputs));
 		int output = perceptron.predict(inputs);
-		System.out.println("---------" + "outut" + "----------" + " " + output);
+		System.out.println("---------" + "Outut" + "----------" + " " + output);
 	}
 }
